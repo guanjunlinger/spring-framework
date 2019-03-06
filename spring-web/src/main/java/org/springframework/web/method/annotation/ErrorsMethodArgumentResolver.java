@@ -29,7 +29,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves {@link Errors} method arguments.
+ * 解析Errors参数类型
  *
  * <p>An {@code Errors} method argument is expected to appear immediately after
  * the model attribute in the method signature. It is resolved by expecting the
