@@ -33,6 +33,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.ControllerAdviceBean;
 
 /**
+ * 静态代理模式和AOP增强对参数和返回值的处理
  * Invokes {@link RequestBodyAdvice} and {@link ResponseBodyAdvice} where each
  * instance may be (and is most likely) wrapped with
  * {@link org.springframework.web.method.ControllerAdviceBean ControllerAdviceBean}.
