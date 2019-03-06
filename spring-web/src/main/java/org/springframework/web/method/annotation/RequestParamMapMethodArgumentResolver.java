@@ -31,10 +31,13 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves {@link Map} method arguments annotated with an @{@link RequestParam}
- * where the annotation does not specify a request parameter name.
- * See {@link RequestParamMethodArgumentResolver} for resolving {@link Map}
- * method arguments with a request parameter name.
+ * 解析的参数类型需要同时满足以下条件:
+ * 1.没有配置参数名的@RequestParam注解
+ * 2.参数为map类型
+ *
+ *
+ *
+ *
  *
  * <p>The created {@link Map} contains all request parameter name/value pairs.
  * If the method parameter type is {@link MultiValueMap} instead, the created
