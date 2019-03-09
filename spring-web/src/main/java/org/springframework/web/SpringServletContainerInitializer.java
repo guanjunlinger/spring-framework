@@ -31,10 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Servlet 3.0 {@link ServletContainerInitializer} designed to support code-based
- * configuration of the servlet container using Spring's {@link WebApplicationInitializer}
- * SPI as opposed to (or possibly in combination with) the traditional
- * {@code web.xml}-based approach.
+ * Servlet 3.0 支持通过 {@link ServletContainerInitializer}配置Servlet容器
  *
  * <h2>Mechanism of Operation</h2>
  * This class will be loaded and instantiated and have its {@link #onStartup}
