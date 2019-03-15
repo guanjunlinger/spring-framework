@@ -267,8 +267,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 
 	/**
-	 * Return a {@link RequestMappingHandlerMapping} ordered at 0 for mapping
-	 * requests to annotated controllers.
+	 * 返回优先级最高的RequestMappingHandlerMapping
 	 */
 	@Bean
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
@@ -433,9 +432,8 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a handler mapping ordered at 1 to map URL paths directly to
-	 * view names. To configure view controllers, override
-	 * {@link #addViewControllers}.
+	 * 返回优先级为1的SimpleUrlHandlerMapping
+	 * view names.
 	 */
 	@Bean
 	@Nullable
@@ -462,8 +460,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a {@link BeanNameUrlHandlerMapping} ordered at 2 to map URL
-	 * paths to controller bean names.
+	 * 返回优先级为2的BeanNameUrlHandlerMapping
 	 */
 	@Bean
 	public BeanNameUrlHandlerMapping beanNameHandlerMapping() {
@@ -475,9 +472,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped
-	 * resource handlers. To configure resource handling, override
-	 * {@link #addResourceHandlers}.
+	 * 返回优先级为 Integer.MAX_VALUE-1 的SimpleUrlHandlerMapping
 	 */
 	@Bean
 	@Nullable
@@ -526,9 +521,8 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	}
 
 	/**
-	 * Return a handler mapping ordered at Integer.MAX_VALUE with a mapped
-	 * default servlet handler. To configure "default" Servlet handling,
-	 * override {@link #configureDefaultServletHandling}.
+	 * 返回优先级为Integer.MAX_VALUE的SimpleUrlHandlerMapping
+	 .
 	 */
 	@Bean
 	@Nullable

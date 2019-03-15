@@ -107,9 +107,8 @@ public class ViewControllerRegistry {
 
 
 	/**
-	 * Return the {@code HandlerMapping} that contains the registered view
-	 * controller mappings, or {@code null} for no registrations.
-	 * @since 4.3.12
+	 *
+	 *
 	 */
 	@Nullable
 	protected SimpleUrlHandlerMapping buildHandlerMapping() {

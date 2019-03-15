@@ -27,11 +27,11 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;
 
 /**
- * Specialization of {@link Component @Component} for classes that declare
- * {@link ExceptionHandler @ExceptionHandler}, {@link InitBinder @InitBinder}, or
- * {@link ModelAttribute @ModelAttribute} methods to be shared across
- * multiple {@code @Controller} classes.
  *
+ * {@link ExceptionHandler @ExceptionHandler}
+ * {@link InitBinder @InitBinder}
+ * {@link ModelAttribute @ModelAttribute}
+ * { ResponseBodyAdvice  }
  * <p>Classes with {@code @ControllerAdvice} can be declared explicitly as Spring
  * beans or auto-detected via classpath scanning. All such beans are sorted via
  * {@link org.springframework.core.annotation.AnnotationAwareOrderComparator
