@@ -51,9 +51,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**
  * 需要解析的参数类型:
  * 1.@RequestParam注解(排除参数是Map类型且注解的参数名为空)
- * 2.参数类型为MultipartFile(无注解)
- * 3.参数类型为Part(无注解)
- * 4.Enum,CharSequence,Number,Date,URL等简单参数类型(无注解)
+ * 2.参数类型为MultipartFile
+ * 3.参数类型为Part
+ * 4.Enum,CharSequence,Number,Date,URL等简单参数类型且useDefaultResolution=true
  *
  * This resolver can also be created in default
  * resolution mode in which simple types (int, long, etc.) not annotated with

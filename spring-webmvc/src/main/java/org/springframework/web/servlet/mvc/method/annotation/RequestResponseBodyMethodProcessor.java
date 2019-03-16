@@ -133,7 +133,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 		if (binderFactory != null) {
 			WebDataBinder binder = binderFactory.createBinder(webRequest, arg, name);
 			if (arg != null) {
-				validateIfApplicable(binder, parameter);
+				validateIfApplicable(binder, parameter);//引入校验逻辑
 				if (binder.getBindingResult().hasErrors() && isBindExceptionRequired(binder, parameter)) {
 					throw new MethodArgumentNotValidException(parameter, binder.getBindingResult());
 				}
