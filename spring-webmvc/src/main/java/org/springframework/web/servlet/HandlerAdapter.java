@@ -22,7 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * MVC framework SPI, allowing parameterization of the core MVC workflow.
+ * SimpleServletHandlerAdapter     handler instanceof Servlet
+ * SimpleControllerHandlerAdapter  handler instanceof Controller
+ * HttpRequestHandlerAdapter       handler instanceof HttpRequestHandler
+ * RequestMappingHandlerAdapter    handler instanceof HandlerMethod
+ *
  *
  * <p>Interface that must be implemented for each handler type to handle a request.
  * This interface is used to allow the {@link DispatcherServlet} to be indefinitely
