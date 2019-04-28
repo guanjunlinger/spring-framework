@@ -43,6 +43,14 @@ import org.springframework.lang.Nullable;
  * interface to be able to specify a sorting order and thus a priority for getting
  * applied by DispatcherServlet. Non-Ordered instances get treated as lowest priority.
  */
+
+/**
+ * RequestMappingHandlerMapping order=0
+ * SimpleUrlHandlerMapping      order=1
+ * BeanNameUrlHandlerMapping    order=2
+ * SimpleUrlHandlerMapping      order=Integer.MAX_VALUE-1
+ * SimpleUrlHandlerMapping      order=Integer.MAX_VALUE
+ */
 public interface HandlerMapping {
 
 	/**
@@ -113,6 +121,7 @@ public interface HandlerMapping {
 	 * <p>Returns {@code null} if no match was found. This is not an error.
 	 * The DispatcherServlet will query all registered HandlerMapping beans to find
 	 * a match, and only decide there is an error if none can find a handler.
+	 *
 	 * @param request current HTTP request
 	 * @return a HandlerExecutionChain instance containing handler object and
 	 * any interceptors, or {@code null} if no mapping found
