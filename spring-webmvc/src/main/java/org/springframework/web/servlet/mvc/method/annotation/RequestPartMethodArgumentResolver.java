@@ -41,13 +41,6 @@ import org.springframework.web.multipart.support.MultipartResolutionDelegate;
 import org.springframework.web.multipart.support.RequestPartServletServerHttpRequest;
 
 /**
- * Resolves the following method arguments:
- * <ul>
- * <li>Annotated with {@code @RequestPart}
- * <li>Of type {@link MultipartFile} 无@RequestParam注解
- * <li>Of type {@code javax.servlet.http.Part} 无@RequestParam注解
- * </ul>
- *
  * <p>When a parameter is annotated with {@code @RequestPart}, the content of the part is
  * passed through an {@link HttpMessageConverter} to resolve the method argument with the
  * 'Content-Type' of the request part in mind. This is analogous to what @{@link RequestBody}

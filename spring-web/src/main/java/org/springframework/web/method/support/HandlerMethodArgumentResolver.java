@@ -23,6 +23,70 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
+ *
+ *
+ * 1.Annotation-based argument resolution
+ *    RequestParamMethodArgumentResolver    useDefaultResolution=false
+ *    RequestParamMapMethodArgumentResolver
+ *
+ *    PathVariableMethodArgumentResolver
+ *    PathVariableMapMethodArgumentResolver
+ *
+ *    MatrixVariableMethodArgumentResolver
+ *    MatrixVariableMapMethodArgumentResolver
+ *
+ *    ServletModelAttributeMethodProcessor annotationNotRequired=false
+ *
+ *    RequestResponseBodyMethodProcessor
+ *
+ *    RequestPartMethodArgumentResolver
+ *
+ *    RequestHeaderMethodArgumentResolver
+ *    RequestHeaderMapMethodArgumentResolver
+ *
+ *    ServletCookieValueMethodArgumentResolver
+ *
+ *    ExpressionValueMethodArgumentResolver
+ *
+ *    SessionAttributeMethodArgumentResolver
+ *
+ *    RequestAttributeMethodArgumentResolver
+ *
+ * 2.Type-based argument resolution
+ *    ServletRequestMethodArgumentResolver
+ *    ServletResponseMethodArgumentResolver
+ *
+ *    HttpEntityMethodProcessor
+ *
+ *    RedirectAttributesMethodArgumentResolver
+ *
+ *    ModelMethodProcessor
+ *
+ *    MapMethodProcessor
+ *
+ *    ErrorsMethodArgumentResolver
+ *
+ *    SessionStatusMethodArgumentResolver
+ *
+ *    UriComponentsBuilderMethodArgumentResolver
+ *
+ *
+ * 3.Custom arguments resolution
+ *
+ *
+ * 4.Catch-all
+ *   RequestParamMethodArgumentResolver    useDefaultResolution=true
+ *
+ *   ServletModelAttributeMethodProcessor  annotationNotRequired=true
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  * Strategy interface for resolving method parameters into argument values in
  * the context of a given request.
  *
@@ -30,6 +94,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * @since 3.1
  * @see HandlerMethodReturnValueHandler
  */
+
 public interface HandlerMethodArgumentResolver {
 
 	/**

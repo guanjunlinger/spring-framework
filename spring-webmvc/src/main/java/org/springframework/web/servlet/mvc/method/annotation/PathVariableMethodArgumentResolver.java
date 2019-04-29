@@ -42,7 +42,6 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * 解析@PathVariable注解的参数(参数类型为Map且注解名为空除外)
  *
  * <p>An @{@link PathVariable} is a named value that gets resolved from a URI template variable.
  * It is always required and does not have a default value to fall back on. See the base class

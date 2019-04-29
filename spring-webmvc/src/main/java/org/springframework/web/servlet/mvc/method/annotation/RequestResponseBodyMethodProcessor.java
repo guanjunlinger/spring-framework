@@ -45,9 +45,6 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 /**
- * 1.处理@RequestBody注解的入参
- * 2.处理@ResponseBody注解的返回值
- *
  *
  * <p>An {@code @RequestBody} method argument is also validated if it is annotated
  * with {@code @javax.validation.Valid}. In case of validation failure,

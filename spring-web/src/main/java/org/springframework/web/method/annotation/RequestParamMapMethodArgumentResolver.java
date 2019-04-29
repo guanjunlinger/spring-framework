@@ -31,14 +31,6 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * 解析的参数类型需要同时满足以下条件:
- * 1.没有配置参数名的@RequestParam注解
- * 2.参数为map类型
- *
- *
- *
- *
- *
  * <p>The created {@link Map} contains all request parameter name/value pairs.
  * If the method parameter type is {@link MultiValueMap} instead, the created
  * map contains all request parameters and all there values for cases where

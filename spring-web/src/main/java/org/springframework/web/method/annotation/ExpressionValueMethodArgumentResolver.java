@@ -27,8 +27,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * 解析@Value注解的参数
- *
  * <p>An {@code @Value} does not have a name but gets resolved from the default
  * value string, which may contain ${...} placeholder or Spring Expression
  * Language #{...} expressions.

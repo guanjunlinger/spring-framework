@@ -77,7 +77,6 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 	private PathMatcher pathMatcher = new AntPathMatcher();
 
-    //HandlerInterceptor实例由子类填充
 	private final List<Object> interceptors = new ArrayList<>();
 
 	private final List<HandlerInterceptor> adaptedInterceptors = new ArrayList<>();
@@ -86,7 +85,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 	private CorsProcessor corsProcessor = new DefaultCorsProcessor();
 
-	private int order = Ordered.LOWEST_PRECEDENCE;  // default: same as non-Ordered
+	private int order = Ordered.LOWEST_PRECEDENCE;
 
 	@Nullable
 	private String beanName;
