@@ -21,12 +21,11 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Interface to be implemented by objects that define a mapping between
- * requests and handler objects.
- *
- * @author Rossen Stoyanchev
- * @author Sebastien Deleuze
- * @since 5.0
+ * RequestMappingHandlerMapping order=0
+ * SimpleUrlHandlerMapping      order=1
+ * BeanNameUrlHandlerMapping    order=2
+ * SimpleUrlHandlerMapping      order=Integer.MAX_VALUE-1
+ * SimpleUrlHandlerMapping      order=Integer.MAX_VALUE
  */
 public interface HandlerMapping {
 
