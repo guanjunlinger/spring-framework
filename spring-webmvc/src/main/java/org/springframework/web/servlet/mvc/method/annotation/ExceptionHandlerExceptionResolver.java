@@ -106,7 +106,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 
 	public ExceptionHandlerExceptionResolver() {
 		StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
-		stringHttpMessageConverter.setWriteAcceptCharset(false);  // see SPR-7316
+		stringHttpMessageConverter.setWriteAcceptCharset(false);
 
 		this.messageConverters = new ArrayList<>();
 		this.messageConverters.add(new ByteArrayHttpMessageConverter());
