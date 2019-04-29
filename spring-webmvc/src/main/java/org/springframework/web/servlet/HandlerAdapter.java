@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * SimpleServletHandlerAdapter     handler instanceof Servlet
+ * SimpleServletHandlerAdapter     handler instanceof Servlet(默认不启用)
  * SimpleControllerHandlerAdapter  handler instanceof Controller
  * HttpRequestHandlerAdapter       handler instanceof HttpRequestHandler
  * RequestMappingHandlerAdapter    handler instanceof HandlerMethod
