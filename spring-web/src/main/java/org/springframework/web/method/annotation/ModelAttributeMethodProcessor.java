@@ -55,9 +55,6 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * 处理的参数类型:
- *  1.@ModelAttribute注解的参数
- *  2.annotationNotRequired=true 且参数不是简单对象类型
  *
  *
  * <p>Model attributes are obtained from the model or created with a default
