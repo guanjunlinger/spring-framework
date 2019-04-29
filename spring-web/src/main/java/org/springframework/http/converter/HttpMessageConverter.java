@@ -25,7 +25,29 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface that specifies a converter that can convert from and to HTTP requests and responses.
+ *  1.default HttpMessageConverters
+ *   ByteArrayHttpMessageConverter
+ *   StringHttpMessageConverter
+ *   ResourceHttpMessageConverter
+ *   ResourceRegionHttpMessageConverter
+ *
+ *   SourceHttpMessageConverter
+ *
+ *   AllEncompassingFormHttpMessageConverter
+ *
+ *   AtomFeedHttpMessageConverter
+ *   RssChannelHttpMessageConverter
+ *
+ *   MappingJackson2XmlHttpMessageConverter
+ *
+ *   MappingJackson2HttpMessageConverter
+ *
+ *   MappingJackson2SmileHttpMessageConverter
+ *
+ *   MappingJackson2CborHttpMessageConverter
+ *
+ * 2.custom HttpMessageConverter
+ *
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
