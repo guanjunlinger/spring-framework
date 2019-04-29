@@ -21,8 +21,32 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Strategy interface to handle the value returned from the invocation of a
- * handler method .
+ * 1.Single-purpose return value types
+ *    ModelAndViewMethodReturnValueHandler
+ *    ModelMethodProcessor
+ *    ViewMethodReturnValueHandler
+ *    ResponseBodyEmitterReturnValueHandler
+ *    StreamingResponseBodyReturnValueHandler
+ *    HttpEntityMethodProcessor
+ *    HttpHeadersReturnValueHandler
+ *    CallableMethodReturnValueHandler
+ *    DeferredResultMethodReturnValueHandler
+ *    AsyncTaskMethodReturnValueHandler
+ *
+ * 2.Annotation-based return value types
+ *    ModelAttributeMethodProcessor        annotationNotRequired=false
+ *    RequestResponseBodyMethodProcessor
+ *
+ *
+ *3.Multi-purpose return value types
+ *   ViewNameMethodReturnValueHandler
+ *   MapMethodProcessor
+ *
+ *4.Custom return value types
+ *
+ *5.Catch-all
+ *   ModelAndViewResolverMethodReturnValueHandler
+ *   ModelAttributeMethodProcessor                   annotationNotRequired=true
  *
  * @author Arjen Poutsma
  * @since 3.1
