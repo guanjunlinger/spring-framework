@@ -20,13 +20,7 @@ import reactor.core.publisher.Mono;
 
 import org.springframework.web.server.ServerWebExchange;
 
-/**
- * RequestMappingHandlerMapping order=0
- * SimpleUrlHandlerMapping      order=1
- * BeanNameUrlHandlerMapping    order=2
- * SimpleUrlHandlerMapping      order=Integer.MAX_VALUE-1
- * SimpleUrlHandlerMapping      order=Integer.MAX_VALUE
- */
+
 public interface HandlerMapping {
 
 	/**
