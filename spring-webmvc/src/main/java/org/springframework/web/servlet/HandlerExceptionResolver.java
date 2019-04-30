@@ -24,8 +24,8 @@ import org.springframework.lang.Nullable;
 /**
  * 1.default HandlerExceptionResolvers
  *   ExceptionHandlerExceptionResolver
- *   ResponseStatusExceptionResolver     order=Integer.MAX_VALUE
- *   DefaultHandlerExceptionResolver     order=Integer.MAX_VALUE
+ *   ResponseStatusExceptionResolver
+ *   DefaultHandlerExceptionResolver
 
 
  */
