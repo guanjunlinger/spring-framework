@@ -22,12 +22,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.lang.Nullable;
 
 /**
+ *
+ *
  * 1.default HandlerExceptionResolvers
  *   ExceptionHandlerExceptionResolver
  *   ResponseStatusExceptionResolver
  *   DefaultHandlerExceptionResolver
-
-
+ *
+ *
+ * 2.custom HandlerExceptionResolvers
  */
 public interface HandlerExceptionResolver {
 
