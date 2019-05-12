@@ -22,15 +22,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.lang.Nullable;
 
 /**
+ * note:SimpleMappingExceptionResolver 默认不启用
+ *
+ *   1.HandlerExceptionResolverComposite  order=0
+ *      ExceptionHandlerExceptionResolver
+ *      ResponseStatusExceptionResolver
+ *      DefaultHandlerExceptionResolver
+ *      扩展的HandlerExceptionResolver
+ *
+ *   2.自定义HandlerExceptionResolver
  *
  *
- * 1.default HandlerExceptionResolvers
- *   ExceptionHandlerExceptionResolver
- *   ResponseStatusExceptionResolver
- *   DefaultHandlerExceptionResolver
  *
  *
- * 2.custom HandlerExceptionResolvers
  */
 public interface HandlerExceptionResolver {
 
