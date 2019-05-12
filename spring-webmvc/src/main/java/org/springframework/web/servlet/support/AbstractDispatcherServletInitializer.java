@@ -59,6 +59,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		// 注册ContextLoaderListener 完成Spring容器的初始化
 		super.onStartup(servletContext);
 		registerDispatcherServlet(servletContext);
 	}
