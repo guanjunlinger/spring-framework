@@ -23,6 +23,12 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
+ * SourceFilteringListener
+ * GenericApplicationListenerAdapter
+ * ApplicationListenerMethodAdapter
+ * ApplicationListenerMethodTransactionalAdapter  事务上下文的事件处理
+ *
+ *
  * Extended variant of the standard {@link ApplicationListener} interface,
  * exposing further metadata such as the supported event and source type.
  *
