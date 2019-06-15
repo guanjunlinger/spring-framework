@@ -82,6 +82,17 @@ import static org.springframework.context.annotation.AnnotationConfigUtils.CONFI
  * @author Juergen Hoeller
  * @author Phillip Webb
  * @since 3.0
+ *
+ * FullConfigurationCandidate
+ *   1.@Configuration
+ *
+ * LiteConfigurationCandidate
+ *   1.@Component
+ *   2.@ComponentScan
+ *   3.@Import
+ *   4.@ImportResource
+ *   5.@Bean
+ *
  */
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor,
 		PriorityOrdered, ResourceLoaderAware, BeanClassLoaderAware, EnvironmentAware {
