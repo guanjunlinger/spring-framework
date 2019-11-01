@@ -20,6 +20,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.lang.Nullable;
 
 /**
+ *  主要用于扩展优先级高的返回值处理器
  * A return value handler that supports async types. Such return value types
  * need to be handled with priority so the async value can be "unwrapped".
  *
