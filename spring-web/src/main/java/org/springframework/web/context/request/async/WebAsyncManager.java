@@ -288,8 +288,11 @@ public final class WebAsyncManager {
 		}
 
 		List<CallableProcessingInterceptor> interceptors = new ArrayList<>();
+		//WebAsyncTask的回调接口优先级最高
 		interceptors.add(webAsyncTask.getInterceptor());
+		//AsyncSupportConfigurer配置的CallableInterceptor
 		interceptors.addAll(this.callableInterceptors.values());
+		//内置的超时拦截器
 		interceptors.add(timeoutCallableInterceptor);
 
 		final Callable<?> callable = webAsyncTask.getCallable();
