@@ -368,7 +368,9 @@ public final class WebAsyncManager {
 		return request != null ? request.getRequestURI() : "servlet container";
 	}
 
-	private void setConcurrentResultAndDispatch(Object result) {
+	private void setConcurrentResultAndDispatch(Object result)
+
+	{
 		synchronized (WebAsyncManager.this) {
 			if (this.concurrentResult != RESULT_NONE) {
 				return;

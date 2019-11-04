@@ -182,6 +182,8 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	 * simple {@link Callable} instead of the original controller as the handler in
 	 * order to return the fixed (concurrent) result value given to it. Effectively
 	 * "resumes" processing with the asynchronously produced return value.
+	 *
+	 * 内部类简化异步请求的处理
 	 */
 	private class ConcurrentResultHandlerMethod extends ServletInvocableHandlerMethod {
 
