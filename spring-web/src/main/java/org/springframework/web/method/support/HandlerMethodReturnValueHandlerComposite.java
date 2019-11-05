@@ -85,8 +85,8 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 
 	@Nullable
 	private HandlerMethodReturnValueHandler selectHandler(@Nullable Object value, MethodParameter returnType) {
+		//AsyncHandlerMethodReturnValueHandler内置高优先级(如果是异步返回值,则忽略内置的HandlerMethodReturnValueHandler)
 		boolean isAsyncValue = isAsyncReturnValue(value, returnType);
-		// AsyncHandlerMethodReturnValueHandler 内置高优先级
 		for (HandlerMethodReturnValueHandler handler : this.returnValueHandlers) {
 			if (isAsyncValue && !(handler instanceof AsyncHandlerMethodReturnValueHandler)) {
 				continue;
