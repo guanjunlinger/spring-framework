@@ -41,6 +41,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  *
  * @author Rossen Stoyanchev
  * @since 4.2
+ * 返回值类型为StreamingResponseBody
+ *
  */
 public class StreamingResponseBodyReturnValueHandler implements HandlerMethodReturnValueHandler {
 
@@ -73,8 +75,10 @@ public class StreamingResponseBodyReturnValueHandler implements HandlerMethodRet
 		if (returnValue instanceof ResponseEntity) {
 			ResponseEntity<?> responseEntity = (ResponseEntity<?>) returnValue;
 			response.setStatus(responseEntity.getStatusCodeValue());
+			//添加相应头
 			outputMessage.getHeaders().putAll(responseEntity.getHeaders());
 			returnValue = responseEntity.getBody();
+			//响应体为空,则停止处理
 			if (returnValue == null) {
 				mavContainer.setRequestHandled(true);
 				outputMessage.flush();
