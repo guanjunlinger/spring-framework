@@ -1037,10 +1037,11 @@ public class DispatcherServlet extends FrameworkServlet {
 				// Actually invoke the handler.
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
+				//异步请求开始时,停止后续处理逻辑
 				if (asyncManager.isConcurrentHandlingStarted()) {
 					return;
 				}
-                //ModelAndView不为空,且没有配置视图名称的默认策略
+                //ModelAndView不为空,且没有配置视图
 				applyDefaultViewName(processedRequest, mv);
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
 			}
@@ -1066,7 +1067,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			if (asyncManager.isConcurrentHandlingStarted()) {
 				// Instead of postHandle and afterCompletion
 				if (mappedHandler != null) {
-					//异步请求开始之后,回调afterConcurrentHandlingStarted方法
+					//异步请求开始之后的回调方法(afterConcurrentHandlingStarted)
 					mappedHandler.applyAfterConcurrentHandlingStarted(processedRequest, response);
 				}
 			}
