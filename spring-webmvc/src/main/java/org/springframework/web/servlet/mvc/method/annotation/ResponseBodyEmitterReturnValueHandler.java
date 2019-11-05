@@ -48,6 +48,10 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * Handler for return values of type {@link ResponseBodyEmitter} and sub-classes
  * such as {@link SseEmitter} including the same types wrapped with
  * {@link ResponseEntity}.
+ * 支持的返回类型:
+ * ResponseBodyEmitter
+ * ResponseEntity<ResponseBodyEmitter>
+ *
  *
  * <p>As of 5.0 also supports reactive return value types for any reactive
  * library with registered adapters in {@link ReactiveAdapterRegistry}.
