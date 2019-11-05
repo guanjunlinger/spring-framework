@@ -92,7 +92,7 @@ public class StreamingResponseBodyReturnValueHandler implements HandlerMethodRet
 
 		Assert.isInstanceOf(StreamingResponseBody.class, returnValue, "StreamingResponseBody expected");
 		StreamingResponseBody streamingBody = (StreamingResponseBody) returnValue;
-
+        //将StreamingResponseBody返回值转化为异步任务
 		Callable<Void> callable = new StreamingResponseBodyTask(outputMessage.getBody(), streamingBody);
 		WebAsyncUtils.getAsyncManager(webRequest).startCallableProcessing(callable, mavContainer);
 	}
