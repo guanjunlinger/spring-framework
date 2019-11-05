@@ -191,12 +191,14 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 
 		public ConcurrentResultHandlerMethod(final Object result, ConcurrentResultMethodParameter returnType) {
 			super((Callable<Object>) () -> {
+				//异步处理失败,直接抛出异常
 				if (result instanceof Exception) {
 					throw (Exception) result;
 				}
 				else if (result instanceof Throwable) {
 					throw new NestedServletException("Async processing failed", (Throwable) result);
 				}
+				//异步处理成功,直接返回异步执行的结果
 				return result;
 			}, CALLABLE_METHOD);
 
