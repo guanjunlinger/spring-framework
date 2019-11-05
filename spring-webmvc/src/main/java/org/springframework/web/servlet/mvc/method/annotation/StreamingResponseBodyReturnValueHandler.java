@@ -41,7 +41,10 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  *
  * @author Rossen Stoyanchev
  * @since 4.2
- * 返回值类型为StreamingResponseBody
+ * 支持的返回值类型:
+ *  1.StreamingResponseBody
+ *  2.ResponseEntity<StreamingResponseBody>
+ *
  *
  */
 public class StreamingResponseBodyReturnValueHandler implements HandlerMethodReturnValueHandler {
