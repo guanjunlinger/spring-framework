@@ -31,9 +31,9 @@ import org.springframework.web.servlet.View;
  * information to the {@link ModelAndViewContainer}.
  *
  * <p>If the return value is {@code null}, the
- * {@link ModelAndViewContainer#setRequestHandled(boolean)} flag is set to
- * {@code true} to indicate the request was handled directly.
- *
+ *  * {@link ModelAndViewContainer#setRequestHandled(boolean)} flag is set to
+ *  * {@code true} to indicate the request was handled directly.
+ *  *
  * <p>A {@link ModelAndView} return type has a set purpose. Therefore this
  * handler should be configured ahead of handlers that support any return
  * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody}

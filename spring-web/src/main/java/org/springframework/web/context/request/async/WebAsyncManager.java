@@ -418,8 +418,12 @@ public final class WebAsyncManager {
 		}
 
 		List<DeferredResultProcessingInterceptor> interceptors = new ArrayList<>();
+		//DeferredResult回调接口优先级最高
 		interceptors.add(deferredResult.getInterceptor());
+		//AsyncSupportConfigurer配置的DeferredResultProcessingInterceptor
 		interceptors.addAll(this.deferredResultInterceptors.values());
+
+		//注册默认的超时拦截器TimeoutDeferredResultProcessingInterceptor
 		interceptors.add(timeoutDeferredResultInterceptor);
 
 		final DeferredResultInterceptorChain interceptorChain = new DeferredResultInterceptorChain(interceptors);
