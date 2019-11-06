@@ -21,6 +21,33 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
+ * 1. 异步请求
+ *    AsyncTaskMethodReturnValueHandler
+ *    CallableMethodReturnValueHandler
+ *    DeferredResultMethodReturnValueHandler
+ *    ResponseBodyEmitterReturnValueHandler
+ *    StreamingResponseBodyReturnValueHandler
+ *
+ *
+ * 2.视图层渲染
+ *   ViewNameMethodReturnValueHandler
+ *   ViewMethodReturnValueHandler
+ *   ModelAndViewMethodReturnValueHandler
+ *   ModelAndViewResolverMethodReturnValueHandler
+ *
+ * 3.HttpMessageConverter进行消息转换
+ *   HttpEntityMethodProcessor
+ *   RequestResponseBodyMethodProcessor
+ *
+ * 4.填充ModelAndViewContainer
+ *   ModelAttributeMethodProcessor
+ *   ServletModelAttributeMethodProcessor
+ *   MapMethodProcessor
+ *   ModelMethodProcessor
+ *
+ *
+ * 5.只处理HTTP Header
+ *   HttpHeadersReturnValueHandler
  *
  * @author Arjen Poutsma
  * @since 3.1

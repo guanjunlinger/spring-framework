@@ -217,6 +217,7 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 
 		MediaType selectedMediaType = null;
 		MediaType contentType = outputMessage.getHeaders().getContentType();
+		//已经设置具体的返回类型
 		if (contentType != null && contentType.isConcrete()) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Found 'Content-Type:" + contentType + "' in response");
