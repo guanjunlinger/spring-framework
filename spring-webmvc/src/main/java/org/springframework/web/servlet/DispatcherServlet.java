@@ -1293,7 +1293,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			@Nullable Object handler, Exception ex) throws Exception {
 
 		// Success and error responses may use different content types
-		//异常处理可能更改handlerHandlerMethod返回的MIME类型
+		//异常处理可能更改handlerMethod返回的MIME类型
 		request.removeAttribute(HandlerMapping.PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE);
 
 		// Check registered HandlerExceptionResolvers...
