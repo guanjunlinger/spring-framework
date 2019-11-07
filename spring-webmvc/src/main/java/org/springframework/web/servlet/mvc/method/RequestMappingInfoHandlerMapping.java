@@ -135,6 +135,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 		request.setAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE, decodedUriVariables);
 
 		if (!info.getProducesCondition().getProducibleMediaTypes().isEmpty()) {
+			//设置当前HandlerMethod返回的MIME类型
 			Set<MediaType> mediaTypes = info.getProducesCondition().getProducibleMediaTypes();
 			request.setAttribute(PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE, mediaTypes);
 		}
