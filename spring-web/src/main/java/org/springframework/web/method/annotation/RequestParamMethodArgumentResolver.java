@@ -246,7 +246,7 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 		}
 	}
 
-
+    //请求参数描述信息的封装类
 	private static class RequestParamNamedValueInfo extends NamedValueInfo {
 
 		public RequestParamNamedValueInfo() {
