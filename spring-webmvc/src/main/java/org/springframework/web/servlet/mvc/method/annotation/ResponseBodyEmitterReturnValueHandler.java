@@ -230,6 +230,7 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 	/**
 	 * Wrap to silently ignore header changes HttpMessageConverter's that would
 	 * otherwise cause HttpHeaders to raise exceptions.
+	 * 包装类,忽略对HTTP头的所有修改操作
 	 */
 	private static class StreamingServletServerHttpResponse implements ServerHttpResponse {
 
