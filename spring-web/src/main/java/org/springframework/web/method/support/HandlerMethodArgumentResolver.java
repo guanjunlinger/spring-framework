@@ -25,8 +25,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 /**
  *
  *
- * 1.Annotation-based argument resolution
- *    RequestParamMethodArgumentResolver    useDefaultResolution=false
+ * 1. 基于名字的请求参数
+ *    RequestParamMethodArgumentResolver
  *    RequestParamMapMethodArgumentResolver
  *
  *    PathVariableMethodArgumentResolver
@@ -34,12 +34,6 @@ import org.springframework.web.context.request.NativeWebRequest;
  *
  *    MatrixVariableMethodArgumentResolver
  *    MatrixVariableMapMethodArgumentResolver
- *
- *    ServletModelAttributeMethodProcessor annotationNotRequired=false
- *
- *    RequestResponseBodyMethodProcessor
- *
- *    RequestPartMethodArgumentResolver
  *
  *    RequestHeaderMethodArgumentResolver
  *    RequestHeaderMapMethodArgumentResolver
@@ -52,40 +46,28 @@ import org.springframework.web.context.request.NativeWebRequest;
  *
  *    RequestAttributeMethodArgumentResolver
  *
- * 2.Type-based argument resolution
+ * 2. 与ModelAndViewContainer相关的参数
+ *    ServletModelAttributeMethodProcessor
+ *    ModelAttributeMethodProcessor
+ *    ModelMethodProcessor
+ *    MapMethodProcessor
+ *    RedirectAttributesMethodArgumentResolver
+ *    SessionStatusMethodArgumentResolver
+ *
+ * 3.与Servlet相关的参数
  *    ServletRequestMethodArgumentResolver
  *    ServletResponseMethodArgumentResolver
  *
+ * 4.与HTTP请求体相关的参数
  *    HttpEntityMethodProcessor
+ *    RequestResponseBodyMethodProcessor
+ *    RequestPartMethodArgumentResolver
  *
- *    RedirectAttributesMethodArgumentResolver
+ * 5.UriComponentsBuilder类型的参数
+ *   UriComponentsBuilderMethodArgumentResolver
  *
- *    ModelMethodProcessor
- *
- *    MapMethodProcessor
- *
- *    ErrorsMethodArgumentResolver
- *
- *    SessionStatusMethodArgumentResolver
- *
- *    UriComponentsBuilderMethodArgumentResolver
- *
- *
- * 3.Custom arguments resolution
- *
- *
- * 4.Catch-all
- *   RequestParamMethodArgumentResolver    useDefaultResolution=true
- *
- *   ServletModelAttributeMethodProcessor  annotationNotRequired=true
- *
- *
- *
- *
- *
- *
- *
- *
+ * 6.与参数校验相关的Errors类型参数
+ *  ErrorsMethodArgumentResolver
  *
  * Strategy interface for resolving method parameters into argument values in
  * the context of a given request.
