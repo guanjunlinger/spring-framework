@@ -303,7 +303,9 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 		return arg;
 	}
 
-
+	/**
+	 * 包装对请求体是否为空的判断处理
+	 */
 	private static class EmptyBodyCheckingHttpInputMessage implements HttpInputMessage {
 
 		private final HttpHeaders headers;
