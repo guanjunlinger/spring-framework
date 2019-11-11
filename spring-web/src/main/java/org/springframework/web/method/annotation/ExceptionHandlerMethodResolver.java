@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * Discovers {@linkplain ExceptionHandler @ExceptionHandler} methods in a given class,
  * including all of its superclasses, and helps to resolve a given {@link Exception}
  * to the exception types supported by a given {@link Method}.
+ * 解析目标类@ExceptionHandler注解的方法
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -60,8 +61,11 @@ public class ExceptionHandlerMethodResolver {
 	 * @param handlerType the type to introspect
 	 */
 	public ExceptionHandlerMethodResolver(Class<?> handlerType) {
+		//提取所有@ExceptionHandler修饰的方法
 		for (Method method : MethodIntrospector.selectMethods(handlerType, EXCEPTION_HANDLER_METHODS)) {
+			//解析@ExceptionHandler方法支持的异常类型
 			for (Class<? extends Throwable> exceptionType : detectExceptionMappings(method)) {
+				//同一种异常只能注册一种ExceptionHandlerMethod
 				addExceptionMapping(exceptionType, method);
 			}
 		}
