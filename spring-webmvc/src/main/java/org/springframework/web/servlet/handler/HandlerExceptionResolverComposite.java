@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * A {@link HandlerExceptionResolver} that delegates to a list of other
  * {@link HandlerExceptionResolver HandlerExceptionResolvers}.
- *
+ *  代理框架内置的HandlerExceptionResolver
  * @author Rossen Stoyanchev
  * @since 3.1
  */
