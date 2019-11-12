@@ -183,7 +183,7 @@ public class HandlerMethod {
 		}
 		return result;
 	}
-
+    //处理器方法可能有@ResponseStatus注解信息
 	private void evaluateResponseStatus() {
 		ResponseStatus annotation = getMethodAnnotation(ResponseStatus.class);
 		if (annotation == null) {
