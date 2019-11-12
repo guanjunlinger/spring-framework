@@ -219,6 +219,7 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 			else if (ex instanceof BindException) {
 				return handleBindException((BindException) ex, request, response, handler);
 			}
+			//处理器不存在异常处理
 			else if (ex instanceof NoHandlerFoundException) {
 				return handleNoHandlerFoundException(
 						(NoHandlerFoundException) ex, request, response, handler);
