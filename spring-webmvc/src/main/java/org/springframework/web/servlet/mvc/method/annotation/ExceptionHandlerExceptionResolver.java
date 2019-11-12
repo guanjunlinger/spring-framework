@@ -400,13 +400,14 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 			if (logger.isDebugEnabled()) {
 				logger.debug("Using @ExceptionHandler " + exceptionHandlerMethod);
 			}
-			//异常处理传递额外的异常信息
 			Throwable cause = exception.getCause();
 			if (cause != null) {
 				// Expose cause as provided argument as well
+				//传递异常和cause对象
 				exceptionHandlerMethod.invokeAndHandle(webRequest, mavContainer, exception, cause, handlerMethod);
 			} else {
 				// Otherwise, just the given exception as-is
+				////只传递异常参数
 				exceptionHandlerMethod.invokeAndHandle(webRequest, mavContainer, exception, handlerMethod);
 			}
 		} catch (Throwable invocationEx) {
@@ -455,16 +456,19 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 		Class<?> handlerType = null;
 
 		if (handlerMethod != null) {
-			// Local exception handler methods on the controller class itself.
+			// 首先搜索HandlerMethod所在类的@ExceptionHandler的方法
+
 			// To be invoked through the proxy, even in case of an interface-based proxy.
 			handlerType = handlerMethod.getBeanType();
 			ExceptionHandlerMethodResolver resolver = this.exceptionHandlerCache.get(handlerType);
 			if (resolver == null) {
+				//缓存处理器对@ExceptionHandler方法的解析结果
 				resolver = new ExceptionHandlerMethodResolver(handlerType);
 				this.exceptionHandlerCache.put(handlerType, resolver);
 			}
 			Method method = resolver.resolveMethod(exception);
 			if (method != null) {
+				//如果存在@ExceptionHandler异常处理方法
 				return new ServletInvocableHandlerMethod(handlerMethod.getBean(), method);
 			}
 			// For advice applicability check below (involving base packages, assignable types
@@ -473,7 +477,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 				handlerType = AopUtils.getTargetClass(handlerMethod.getBean());
 			}
 		}
-
+        //搜索所有@ControllerAdvice注入的ExceptionHandlerMethodResolver
 		for (Map.Entry<ControllerAdviceBean, ExceptionHandlerMethodResolver> entry : this.exceptionHandlerAdviceCache.entrySet()) {
 			ControllerAdviceBean advice = entry.getKey();
 			if (advice.isApplicableToBeanType(handlerType)) {
