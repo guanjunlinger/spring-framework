@@ -1014,6 +1014,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// Determine handler for the current request.
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
+					//若处理器不存在,则默认返回404状态码
 					noHandlerFound(processedRequest, response);
 					return;
 				}
