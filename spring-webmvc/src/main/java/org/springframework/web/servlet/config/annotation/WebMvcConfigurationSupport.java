@@ -909,7 +909,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 			addDefaultHandlerExceptionResolvers(exceptionResolvers);
 		}
 		extendHandlerExceptionResolvers(exceptionResolvers);
-		//组合模式管理所有的HandlerExceptionResolver对象
+		//组合模式管理所有的HandlerExceptionResolver对象,order=0
 		HandlerExceptionResolverComposite composite = new HandlerExceptionResolverComposite();
 		composite.setOrder(0);
 		composite.setExceptionResolvers(exceptionResolvers);
