@@ -1328,7 +1328,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			WebUtils.exposeErrorRequestAttributes(request, ex, getServletName());
 			return exMv;
 		}
-
+        //异常处理器没有捕获到异常继续抛出
 		throw ex;
 	}
 
