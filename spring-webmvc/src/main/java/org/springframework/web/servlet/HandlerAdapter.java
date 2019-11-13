@@ -39,6 +39,7 @@ import org.springframework.lang.Nullable;
  * org.springframework.core.Ordered} interface to be able to specify a sorting
  * order (and thus a priority) for getting applied by the {@code DispatcherServlet}.
  * Non-Ordered instances get treated as lowest priority.
+ * 框架内置的HandlerAdapter默认最低优先级
  *
  * @author Rod Johnson
  * @author Juergen Hoeller

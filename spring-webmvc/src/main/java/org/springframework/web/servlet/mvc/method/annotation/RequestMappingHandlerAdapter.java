@@ -596,10 +596,12 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			}
 			Set<Method> attrMethods = MethodIntrospector.selectMethods(beanType, MODEL_ATTRIBUTE_METHODS);
 			if (!attrMethods.isEmpty()) {
+				//从@ControllerAdvice中提取@ModelAttribute注解的方法
 				this.modelAttributeAdviceCache.put(adviceBean, attrMethods);
 			}
 			Set<Method> binderMethods = MethodIntrospector.selectMethods(beanType, INIT_BINDER_METHODS);
 			if (!binderMethods.isEmpty()) {
+				////从@ControllerAdvice中提取@InitBinder注解的方法
 				this.initBinderAdviceCache.put(adviceBean, binderMethods);
 			}
 			if (RequestBodyAdvice.class.isAssignableFrom(beanType)) {
