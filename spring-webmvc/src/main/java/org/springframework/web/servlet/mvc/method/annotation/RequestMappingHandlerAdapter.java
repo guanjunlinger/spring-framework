@@ -895,6 +895,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			}
             //正常处理器流程 不需要提供额外参数
 			invocableMethod.invokeAndHandle(webRequest, mavContainer);
+			//当前是异步请求直接返回null
 			if (asyncManager.isConcurrentHandlingStarted()) {
 				return null;
 			}
@@ -1005,6 +1006,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 										 ModelFactory modelFactory, NativeWebRequest webRequest) throws Exception {
 
 		modelFactory.updateModel(webRequest, mavContainer);
+		//同步请求不产生视图,直接返回null
 		if (mavContainer.isRequestHandled()) {
 			return null;
 		}

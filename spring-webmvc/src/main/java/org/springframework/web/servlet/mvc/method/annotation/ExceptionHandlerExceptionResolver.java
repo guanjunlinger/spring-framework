@@ -423,6 +423,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 		if (mavContainer.isRequestHandled()) {
 			return new ModelAndView();
 		} else {
+			//若请求未完成,从ModelAndViewContainer对象中返回ModelAndView对象
 			ModelMap model = mavContainer.getModel();
 			HttpStatus status = mavContainer.getStatus();
 			ModelAndView mav = new ModelAndView(mavContainer.getViewName(), model, status);

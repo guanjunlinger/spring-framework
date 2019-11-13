@@ -1308,6 +1308,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			}
 		}
 		if (exMv != null) {
+			//异常处理返回值与视图渲染无关
 			if (exMv.isEmpty()) {
 				request.setAttribute(EXCEPTION_ATTRIBUTE, ex);
 				return null;

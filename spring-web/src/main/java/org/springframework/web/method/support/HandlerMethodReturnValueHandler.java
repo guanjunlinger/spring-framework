@@ -34,19 +34,15 @@ import org.springframework.web.context.request.NativeWebRequest;
  *   ViewMethodReturnValueHandler
  *   ModelAndViewMethodReturnValueHandler
  *   ModelAndViewResolverMethodReturnValueHandler
- *
- * 3.HttpMessageConverter进行消息转换
- *   HttpEntityMethodProcessor
- *   RequestResponseBodyMethodProcessor
- *
- * 4.填充ModelAndViewContainer
  *   ModelAttributeMethodProcessor
  *   ServletModelAttributeMethodProcessor
  *   MapMethodProcessor
  *   ModelMethodProcessor
  *
- *
- * 5.只处理HTTP Header
+ * 3.Http响应报文
+ *   HttpEntityMethodProcessor
+ *   RequestResponseBodyMethodProcessor
+ * 4.HTTP响应头
  *   HttpHeadersReturnValueHandler
  *
  * @author Arjen Poutsma
