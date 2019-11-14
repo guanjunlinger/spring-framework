@@ -480,6 +480,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
         //搜索所有@ControllerAdvice注入的ExceptionHandlerMethodResolver
 		for (Map.Entry<ControllerAdviceBean, ExceptionHandlerMethodResolver> entry : this.exceptionHandlerAdviceCache.entrySet()) {
 			ControllerAdviceBean advice = entry.getKey();
+			//默认应用到所有Handler类型,包括null
 			if (advice.isApplicableToBeanType(handlerType)) {
 				ExceptionHandlerMethodResolver resolver = entry.getValue();
 				Method method = resolver.resolveMethod(exception);

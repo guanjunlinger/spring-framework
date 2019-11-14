@@ -958,11 +958,13 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		Class<?> handlerType = handlerMethod.getBeanType();
 		Set<Method> methods = this.initBinderCache.get(handlerType);
 		if (methods == null) {
+			//从当前处理器中提取@InitBinder方法
 			methods = MethodIntrospector.selectMethods(handlerType, INIT_BINDER_METHODS);
 			this.initBinderCache.put(handlerType, methods);
 		}
 		List<InvocableHandlerMethod> initBinderMethods = new ArrayList<>();
 		// Global methods first
+		//全局@InitBinder方法优先
 		this.initBinderAdviceCache.forEach((clazz, methodSet) -> {
 			if (clazz.isApplicableToBeanType(handlerType)) {
 				Object bean = clazz.resolveBean();
@@ -971,6 +973,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				}
 			}
 		});
+		//当前处理器@InitBinder方法
 		for (Method method : methods) {
 			Object bean = handlerMethod.getBean();
 			initBinderMethods.add(createInitBinderMethod(bean, method));
