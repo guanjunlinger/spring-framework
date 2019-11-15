@@ -1008,6 +1008,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			Exception dispatchException = null;
 
 			try {
+				//设计文件大小和数目校验
 				processedRequest = checkMultipart(request);
 				multipartRequestParsed = (processedRequest != request);
 
