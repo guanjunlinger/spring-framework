@@ -78,7 +78,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	private PathMatcher pathMatcher = new AntPathMatcher();
 
 	private final List<Object> interceptors = new ArrayList<>();
-
+	/**保存所有的拦截器实例
+	 */
 	private final List<HandlerInterceptor> adaptedInterceptors = new ArrayList<>();
 
 	private CorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
@@ -289,8 +290,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 */
 	@Override
 	protected void initApplicationContext() throws BeansException {
+		//扩展拦截器,默认只支持WebRequestInterceptor和HandlerInterceptor两种接口
 		extendInterceptors(this.interceptors);
+		//添加Spring管理的MappedInterceptor实例
 		detectMappedInterceptors(this.adaptedInterceptors);
+		//将interceptors列表中拦截器适配到HandlerInterceptor类型,然后添加到adaptedInterceptors列表
 		initInterceptors();
 	}
 

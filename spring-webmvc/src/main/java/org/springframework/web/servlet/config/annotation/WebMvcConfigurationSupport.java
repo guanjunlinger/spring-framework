@@ -484,6 +484,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped
 	 * resource handlers. To configure resource handling, override
 	 * {@link #addResourceHandlers}.
+	 * Resource处理器,默认不启用,order=Integer.MAX_VALUE-1
 	 */
 	@Bean
 	@Nullable
@@ -537,6 +538,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at Integer.MAX_VALUE with a mapped
 	 * default servlet handler. To configure "default" Servlet handling,
 	 * override {@link #configureDefaultServletHandling}.
+	 * 将所有请求转发到容器的默认Servlet,默认不启用,order=Integer.MAX_VALUE
 	 */
 	@Bean
 	@Nullable

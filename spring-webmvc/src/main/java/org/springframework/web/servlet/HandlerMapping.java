@@ -43,12 +43,6 @@ import org.springframework.lang.Nullable;
  * interface to be able to specify a sorting order and thus a priority for getting
  * applied by DispatcherServlet. Non-Ordered instances get treated as lowest priority.
  */
-
-/**
- * RequestMappingHandlerMapping order=0
- * SimpleUrlHandlerMapping      order=1
- * BeanNameUrlHandlerMapping    order=2
- */
 public interface HandlerMapping {
 
 	/**

@@ -126,7 +126,7 @@ public class InterceptorRegistration {
 		if (this.includePatterns.isEmpty() && this.excludePatterns.isEmpty()) {
 			return this.interceptor;
 		}
-
+        //如果提供匹配规则,则利用MappedInterceptor代理真实Interceptor对象
 		String[] include = StringUtils.toStringArray(this.includePatterns);
 		String[] exclude = StringUtils.toStringArray(this.excludePatterns);
 		MappedInterceptor mappedInterceptor = new MappedInterceptor(include, exclude, this.interceptor);
