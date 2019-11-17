@@ -604,14 +604,16 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				////从@ControllerAdvice中提取@InitBinder注解的方法
 				this.initBinderAdviceCache.put(adviceBean, binderMethods);
 			}
+					//@ControllerAdvice注解类实现了RequestBodyAdvice接口
 			if (RequestBodyAdvice.class.isAssignableFrom(beanType)) {
 				requestResponseBodyAdviceBeans.add(adviceBean);
 			}
+			//@ControllerAdvice注解类实现了ResponseBodyAdvice接口
 			if (ResponseBodyAdvice.class.isAssignableFrom(beanType)) {
 				requestResponseBodyAdviceBeans.add(adviceBean);
 			}
 		}
-
+           //@ControllerAdvice优先级高于框架内置的RequestBodyAdvice和ResponseBodyAdvice对象
 		if (!requestResponseBodyAdviceBeans.isEmpty()) {
 			this.requestResponseBodyAdvice.addAll(0, requestResponseBodyAdviceBeans);
 		}
