@@ -286,6 +286,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 				//@ControllerAdvice注解类对应的ExceptionHandlerMethodResolver
 				this.exceptionHandlerAdviceCache.put(adviceBean, resolver);
 			}
+			//@ControllerAdvice注解类实现ResponseBodyAdvice接口
 			if (ResponseBodyAdvice.class.isAssignableFrom(beanType)) {
 				this.responseBodyAdvice.add(adviceBean);
 			}

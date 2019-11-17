@@ -267,7 +267,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		return this.servletContext;
 	}
 
-
+    //注册
 	@Bean
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 		RequestMappingHandlerMapping mapping = createRequestMappingHandlerMapping();
@@ -441,6 +441,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at 1 to map URL paths directly to
 	 * view names. To configure view controllers, override
 	 * {@link #addViewControllers}.
+	 * 注册ParameterizableViewController处理器,order=1,默认不启用
 	 */
 	@Bean
 	@Nullable
@@ -470,6 +471,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Return a {@link BeanNameUrlHandlerMapping} ordered at 2 to map URL
 	 * paths to controller bean names.
+	 * 建立URL和bean名之间的映射关系 order=2
 	 */
 	@Bean
 	public BeanNameUrlHandlerMapping beanNameHandlerMapping() {
@@ -484,7 +486,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped
 	 * resource handlers. To configure resource handling, override
 	 * {@link #addResourceHandlers}.
-	 * Resource处理器,默认不启用,order=Integer.MAX_VALUE-1
+	 * 注册ResourceHttpRequestHandler处理器,默认不启用,order=Integer.MAX_VALUE-1
 	 */
 	@Bean
 	@Nullable
@@ -538,7 +540,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at Integer.MAX_VALUE with a mapped
 	 * default servlet handler. To configure "default" Servlet handling,
 	 * override {@link #configureDefaultServletHandling}.
-	 * 将所有请求转发到容器的默认Servlet,默认不启用,order=Integer.MAX_VALUE
+	 * 注册DefaultServletHttpRequestHandler对象,将所有请求转发到容器的默认Servlet,默认不启用,order=Integer.MAX_VALUE
 	 */
 	@Bean
 	@Nullable
@@ -573,6 +575,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		adapter.setContentNegotiationManager(mvcContentNegotiationManager());
 		//配置所有的HttpMessageConverter对象
 		adapter.setMessageConverters(getMessageConverters());
+		//初始化WebDataBinder实例
 		adapter.setWebBindingInitializer(getConfigurableWebBindingInitializer());
 		//增加自定义的参数解析器
 		adapter.setCustomArgumentResolvers(getArgumentResolvers());
@@ -961,6 +964,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		exceptionHandlerResolver.setMessageConverters(getMessageConverters());
 		exceptionHandlerResolver.setCustomArgumentResolvers(getArgumentResolvers());
 		exceptionHandlerResolver.setCustomReturnValueHandlers(getReturnValueHandlers());
+		//添加框架内置的ResponseBodyAdvice对象
 		if (jackson2Present) {
 			exceptionHandlerResolver.setResponseBodyAdvice(
 					Collections.singletonList(new JsonViewResponseBodyAdvice()));

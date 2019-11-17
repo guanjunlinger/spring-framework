@@ -25,7 +25,6 @@ import org.springframework.util.StringUtils;
  * Implementation of the {@link org.springframework.web.servlet.HandlerMapping}
  * interface that map from URLs to beans with names that start with a slash ("/"),
  * similar to how Struts maps URLs to action names.
- * 将所有名称以/开头的bean都注册为处理器
  * <p>This is the default implementation used by the
  * {@link org.springframework.web.servlet.DispatcherServlet}, along with
  * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}.
