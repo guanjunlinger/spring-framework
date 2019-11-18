@@ -267,7 +267,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		return this.servletContext;
 	}
 
-    //注册
+    //注册HandlerMethod,order=0
 	@Bean
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 		RequestMappingHandlerMapping mapping = createRequestMappingHandlerMapping();
