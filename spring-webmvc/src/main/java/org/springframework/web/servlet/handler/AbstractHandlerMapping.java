@@ -436,6 +436,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
+	 * AbstractUrlHandlerMapping的子类返回HandlerExecutionChain对象
+	 * AbstractHandlerMethodMapping的子类返回HandlerMethod对象
 	 * Look up a handler for the given request, returning {@code null} if no
 	 * specific one is found. This method is called by {@link #getHandler};
 	 * a {@code null} return value will lead to the default handler, if one is set.
