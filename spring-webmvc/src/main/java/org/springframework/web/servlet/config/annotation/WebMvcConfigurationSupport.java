@@ -1044,7 +1044,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Return the registered {@link CorsConfiguration} objects,
 	 * keyed by path pattern.
-	 *
+	 * 返回CORS全局配置信息
 	 * @since 4.2
 	 */
 	protected final Map<String, CorsConfiguration> getCorsConfigurations() {
