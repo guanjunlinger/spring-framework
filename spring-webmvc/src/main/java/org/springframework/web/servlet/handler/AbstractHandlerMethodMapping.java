@@ -390,7 +390,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				if (logger.isTraceEnabled()) {
 					logger.trace(matches.size() + " matching mappings: " + matches);
 				}
-				//预检请求,直接返回EmptyHandler对象,跳过搜索
+				//预检请求,直接返回EmptyHandler静态常量,跳过搜索
 				if (CorsUtils.isPreFlightRequest(request)) {
 					return PREFLIGHT_AMBIGUOUS_MATCH;
 				}
