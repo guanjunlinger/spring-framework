@@ -428,7 +428,6 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 			CorsConfiguration globalConfig = this.corsConfigurationSource.getCorsConfiguration(request);
 			CorsConfiguration handlerConfig = getCorsConfiguration(handler, request);
 			CorsConfiguration config = (globalConfig != null ? globalConfig.combine(handlerConfig) : handlerConfig);
-			//分类处理preFlight预检请求和管理关联的真实请求
 			executionChain = getCorsHandlerExecutionChain(request, executionChain, config);
 		}
 
@@ -531,9 +530,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 		if (CorsUtils.isPreFlightRequest(request)) {
 			HandlerInterceptor[] interceptors = chain.getInterceptors();
+			//预检请求直接替换成HttpRequestHandler处理器
 			chain = new HandlerExecutionChain(new PreFlightHandler(config), interceptors);
 		}
 		else {
+			//预检请求关联的真实请求,添加CorsInterceptor拦截器
 			chain.addInterceptor(new CorsInterceptor(config));
 		}
 		return chain;
