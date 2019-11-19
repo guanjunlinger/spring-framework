@@ -425,7 +425,9 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 		}
         //特殊处理CORS请求
 		if (CorsUtils.isCorsRequest(request)) {
+			//获取全局与URL匹配的CORS信息
 			CorsConfiguration globalConfig = this.corsConfigurationSource.getCorsConfiguration(request);
+			//获取处理器配置的CORS信息
 			CorsConfiguration handlerConfig = getCorsConfiguration(handler, request);
 			CorsConfiguration config = (globalConfig != null ? globalConfig.combine(handlerConfig) : handlerConfig);
 			executionChain = getCorsHandlerExecutionChain(request, executionChain, config);
