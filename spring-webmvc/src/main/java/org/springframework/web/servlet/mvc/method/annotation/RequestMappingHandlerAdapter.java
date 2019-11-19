@@ -859,7 +859,9 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 
 		ServletWebRequest webRequest = new ServletWebRequest(request, response);
 		try {
+			//@InitBinder封装成InvocableHandlerMethod
 			WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);
+			//@ModelAttribute注解方法封装成HandlerMethod
 			ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);
 
 			ServletInvocableHandlerMethod invocableMethod = createInvocableHandlerMethod(handlerMethod);
