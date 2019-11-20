@@ -591,6 +591,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		//异步请求的全局配置器
 		AsyncSupportConfigurer configurer = new AsyncSupportConfigurer();
 		configureAsyncSupport(configurer);
+		//默认是SimpleAsyncTaskExecutor 线程池
 		if (configurer.getTaskExecutor() != null) {
 			adapter.setTaskExecutor(configurer.getTaskExecutor());
 		}
