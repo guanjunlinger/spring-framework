@@ -31,7 +31,7 @@ import org.springframework.web.context.request.async.DeferredResultProcessingInt
 
 /**
  * Helps with configuring options for asynchronous request processing.
- *
+ * 异步请求的配置类
  * @author Rossen Stoyanchev
  * @since 3.2
  */
