@@ -100,6 +100,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 			Object... providedArgs) throws Exception {
 
 		Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
+		//解析HandlerMethod上的@ResponseStatus注解,设置响应码
 		setResponseStatus(webRequest);
 
 		if (returnValue == null) {
@@ -109,6 +110,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 			}
 		}
 		else if (StringUtils.hasText(getResponseStatusReason())) {
+			//设置错误理由,直接完成请求处理
 			mavContainer.setRequestHandled(true);
 			return;
 		}
