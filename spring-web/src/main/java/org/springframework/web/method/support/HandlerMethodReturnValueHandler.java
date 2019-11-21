@@ -30,7 +30,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  *
  *
  * 2.视图层渲染
- *   ViewNameMethodReturnValueHandler
+ *   ViewNameMethodReturnValueHandler  支持返回void,应用默认视图
  *   ViewMethodReturnValueHandler
  *   ModelAndViewMethodReturnValueHandler
  *   ModelAndViewResolverMethodReturnValueHandler
