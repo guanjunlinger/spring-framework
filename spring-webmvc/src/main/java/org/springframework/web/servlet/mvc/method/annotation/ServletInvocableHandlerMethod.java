@@ -104,6 +104,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		setResponseStatus(webRequest);
 
 		if (returnValue == null) {
+			//ServletResponseMethodArgumentResolver会设置requestHandled=true
 			if (isRequestNotModified(webRequest) || getResponseStatus() != null || mavContainer.isRequestHandled()) {
 				mavContainer.setRequestHandled(true);
 				return;
