@@ -67,7 +67,7 @@ public class ModelAndViewContainer {
 	private final Set<String> noBinding = new HashSet<>(4);
 
 	private final Set<String> bindingDisabled = new HashSet<>(4);
-
+    //清理会话相关的属性
 	private final SessionStatus sessionStatus = new SimpleSessionStatus();
 
 	private boolean requestHandled = false;

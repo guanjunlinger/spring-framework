@@ -172,7 +172,9 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	private int cacheSecondsForSessionAttributeHandlers = 0;
 
 	private boolean synchronizeOnSession = false;
-
+	/**
+	 * 单例模式管理会话属性
+	 */
 	private SessionAttributeStore sessionAttributeStore = new DefaultSessionAttributeStore();
 
 	private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
@@ -838,6 +840,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			synchronized (this.sessionAttributesHandlerCache) {
 				sessionAttrHandler = this.sessionAttributesHandlerCache.get(handlerType);
 				if (sessionAttrHandler == null) {
+					//Handler与SessionAttributesHandler一一对应
 					sessionAttrHandler = new SessionAttributesHandler(handlerType, this.sessionAttributeStore);
 					this.sessionAttributesHandlerCache.put(handlerType, sessionAttrHandler);
 				}
