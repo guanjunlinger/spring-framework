@@ -92,9 +92,9 @@ public final class ModelFactory {
 	/**
 	 * Populate the model in the following order:
 	 * <ol>
-	 * <li>Retrieve "known" session attributes listed as {@code @SessionAttributes}.检索已知的会话属性
+	 * <li>Retrieve "known" session attributes listed as {@code @SessionAttributes}
 	 * <li>Invoke {@code @ModelAttribute} methods  调用@ModelAttribute方法
-	 * <li>Find {@code @ModelAttribute} method arguments also listed as @ModelAttribute方法注解参数,同时是会话属性
+	 * <li>Find {@code @ModelAttribute} method arguments also listed as
 	 * {@code @SessionAttributes} and ensure they're present in the model raising
 	 * an exception if necessary.
 	 * </ol>
