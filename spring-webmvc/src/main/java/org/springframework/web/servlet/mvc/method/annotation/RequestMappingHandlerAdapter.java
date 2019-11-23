@@ -606,7 +606,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				////从@ControllerAdvice中提取@InitBinder注解的方法
 				this.initBinderAdviceCache.put(adviceBean, binderMethods);
 			}
-					//@ControllerAdvice注解类实现了RequestBodyAdvice接口
+			//@ControllerAdvice注解类实现了RequestBodyAdvice接口
 			if (RequestBodyAdvice.class.isAssignableFrom(beanType)) {
 				requestResponseBodyAdviceBeans.add(adviceBean);
 			}
@@ -615,7 +615,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				requestResponseBodyAdviceBeans.add(adviceBean);
 			}
 		}
-           //@ControllerAdvice优先级高于框架内置的RequestBodyAdvice和ResponseBodyAdvice对象
+		//@ControllerAdvice优先级高于框架内置的RequestBodyAdvice和ResponseBodyAdvice对象
 		if (!requestResponseBodyAdviceBeans.isEmpty()) {
 			this.requestResponseBodyAdvice.addAll(0, requestResponseBodyAdviceBeans);
 		}
@@ -724,7 +724,8 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		return resolvers;
 	}
 
-	/**  返回内置和自定义的HandlerMethodReturnValueHandler对象
+	/**
+	 * 返回内置和自定义的HandlerMethodReturnValueHandler对象
 	 * Return the list of return value handlers to use including built-in and
 	 * custom handlers provided via {@link #setReturnValueHandlers}.
 	 */
@@ -840,7 +841,6 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			synchronized (this.sessionAttributesHandlerCache) {
 				sessionAttrHandler = this.sessionAttributesHandlerCache.get(handlerType);
 				if (sessionAttrHandler == null) {
-					//Handler与SessionAttributesHandler一一对应
 					sessionAttrHandler = new SessionAttributesHandler(handlerType, this.sessionAttributeStore);
 					this.sessionAttributesHandlerCache.put(handlerType, sessionAttrHandler);
 				}
@@ -864,7 +864,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		try {
 			//@InitBinder封装成InvocableHandlerMethod
 			WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);
-			//@ModelAttribute注解方法封装成HandlerMethod
+			//@ModelAttribute注解方法封装成InvocableHandlerMethod
 			ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);
 
 			ServletInvocableHandlerMethod invocableMethod = createInvocableHandlerMethod(handlerMethod);
@@ -904,7 +904,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				});
 				invocableMethod = invocableMethod.wrapConcurrentResult(result);
 			}
-            //正常处理器流程 不需要提供额外参数
+			//正常处理器流程 不需要提供额外参数
 			invocableMethod.invokeAndHandle(webRequest, mavContainer);
 			//当前是异步请求直接返回null
 			if (asyncManager.isConcurrentHandlingStarted()) {

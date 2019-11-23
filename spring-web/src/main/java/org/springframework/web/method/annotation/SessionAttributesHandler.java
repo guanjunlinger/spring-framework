@@ -45,7 +45,9 @@ import org.springframework.web.context.request.WebRequest;
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 3.1
- * 处理Controller上的@SessionAttributes信息
+ * 每个Controller Class对应一个SessionAttributesHandler
+ * 负责维护管理@SessionAttributes定义的会话属性
+ *
  */
 public class SessionAttributesHandler {
 

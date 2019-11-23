@@ -92,9 +92,9 @@ public final class ModelFactory {
 	/**
 	 * Populate the model in the following order:
 	 * <ol>
-	 * <li>Retrieve "known" session attributes listed as {@code @SessionAttributes}.
-	 * <li>Invoke {@code @ModelAttribute} methods
-	 * <li>Find {@code @ModelAttribute} method arguments also listed as
+	 * <li>Retrieve "known" session attributes listed as {@code @SessionAttributes}.检索已知的会话属性
+	 * <li>Invoke {@code @ModelAttribute} methods  调用@ModelAttribute方法
+	 * <li>Find {@code @ModelAttribute} method arguments also listed as @ModelAttribute方法注解参数,同时是会话属性
 	 * {@code @SessionAttributes} and ensure they're present in the model raising
 	 * an exception if necessary.
 	 * </ol>
@@ -124,6 +124,7 @@ public final class ModelFactory {
 	/**
 	 * Invoke model attribute methods to populate the model.
 	 * Attributes are added only if not already present in the model.
+	 * 忽略已经在Model中的属性
 	 */
 	private void invokeModelAttributeMethods(NativeWebRequest request, ModelAndViewContainer container)
 			throws Exception {
@@ -154,6 +155,7 @@ public final class ModelFactory {
 
 	private ModelMethod getNextModelMethod(ModelAndViewContainer container) {
 		for (ModelMethod modelMethod : this.modelMethods) {
+			//优先选择参数含有@ModelAttribute注解的方法
 			if (modelMethod.checkDependencies(container)) {
 				this.modelMethods.remove(modelMethod);
 				return modelMethod;
@@ -286,6 +288,7 @@ public final class ModelFactory {
 			this.handlerMethod = handlerMethod;
 			for (MethodParameter parameter : handlerMethod.getMethodParameters()) {
 				if (parameter.hasParameterAnnotation(ModelAttribute.class)) {
+					//解析@ModelAttribute注解的参数名
 					this.dependencies.add(getNameForParameter(parameter));
 				}
 			}
