@@ -404,11 +404,9 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 			Throwable cause = exception.getCause();
 			if (cause != null) {
 				// Expose cause as provided argument as well
-				//传递异常和cause对象
 				exceptionHandlerMethod.invokeAndHandle(webRequest, mavContainer, exception, cause, handlerMethod);
 			} else {
 				// Otherwise, just the given exception as-is
-				////只传递异常参数
 				exceptionHandlerMethod.invokeAndHandle(webRequest, mavContainer, exception, handlerMethod);
 			}
 		} catch (Throwable invocationEx) {
@@ -478,7 +476,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 				handlerType = AopUtils.getTargetClass(handlerMethod.getBean());
 			}
 		}
-        //搜索所有@ControllerAdvice注入的ExceptionHandlerMethodResolver
+		//搜索所有@ControllerAdvice注入的ExceptionHandlerMethodResolver
 		for (Map.Entry<ControllerAdviceBean, ExceptionHandlerMethodResolver> entry : this.exceptionHandlerAdviceCache.entrySet()) {
 			ControllerAdviceBean advice = entry.getKey();
 			//默认应用到所有Handler类型,包括null

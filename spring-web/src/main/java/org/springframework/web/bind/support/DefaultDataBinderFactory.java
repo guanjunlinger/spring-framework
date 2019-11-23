@@ -47,6 +47,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	 * Create a new {@link WebDataBinder} for the given target object and
 	 * initialize it through a {@link WebBindingInitializer}.
 	 * @throws Exception in case of invalid state or arguments
+	 * 模板方法模式,抽象实例的创建和初始化逻辑
 	 */
 	@Override
 	@SuppressWarnings("deprecation")
@@ -55,6 +56,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 
 		WebDataBinder dataBinder = createBinderInstance(target, objectName, webRequest);
 		if (this.initializer != null) {
+			//全局配置的WebBindingInitializer初始化WebDataBinder实例
 			this.initializer.initBinder(dataBinder, webRequest);
 		}
 		initBinder(dataBinder, webRequest);
