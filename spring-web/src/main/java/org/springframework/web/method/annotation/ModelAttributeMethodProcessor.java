@@ -174,6 +174,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 		}
 
 		// Add resolved attribute and BindingResult at the end of the model
+		//将绑定对象和绑定结果存储到ModelAndViewContainer的Model中
 		Map<String, Object> bindingResultModel = bindingResult.getModel();
 		mavContainer.removeAttributes(bindingResultModel);
 		mavContainer.addAllAttributes(bindingResultModel);

@@ -136,6 +136,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 				}
 			}
 			if (mavContainer != null) {
+				//将BindingResult对象存储到ModelAndViewContainer的Model中
 				mavContainer.addAttribute(BindingResult.MODEL_KEY_PREFIX + name, binder.getBindingResult());
 			}
 		}
