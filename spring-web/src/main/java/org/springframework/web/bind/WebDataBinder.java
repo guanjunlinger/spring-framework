@@ -76,6 +76,7 @@ public class WebDataBinder extends DataBinder {
 	public static final String DEFAULT_FIELD_DEFAULT_PREFIX = "!";
 
 	@Nullable
+
 	private String fieldMarkerPrefix = DEFAULT_FIELD_MARKER_PREFIX;
 
 	@Nullable

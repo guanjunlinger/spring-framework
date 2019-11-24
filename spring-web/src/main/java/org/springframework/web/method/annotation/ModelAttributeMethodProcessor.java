@@ -155,10 +155,13 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 			// skipped in case of binding failure on construction.
 			WebDataBinder binder = binderFactory.createBinder(webRequest, attribute, name);
 			if (binder.getTarget() != null) {
+				//@ModelAttribute注解的参数默认需要数据绑定
 				if (!mavContainer.isBindingDisabled(name)) {
 					bindRequestParameters(binder, webRequest);
 				}
+				//判断是否需要数据校验
 				validateIfApplicable(binder, parameter);
+				//当前参数后紧跟Errors类型参数,则不抛出异常
 				if (binder.getBindingResult().hasErrors() && isBindExceptionRequired(binder, parameter)) {
 					throw new BindException(binder.getBindingResult());
 				}

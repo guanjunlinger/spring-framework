@@ -61,7 +61,7 @@ public class ServletModelAttributeMethodProcessor extends ModelAttributeMethodPr
 	}
 
 
-	/**
+	/** 首先尝试从模板变量和请求参数中获取属性值
 	 * Instantiate the model attribute from a URI template variable or from a
 	 * request parameter if the name matches to the model attribute name and
 	 * if there is an appropriate type conversion strategy. If none of these
