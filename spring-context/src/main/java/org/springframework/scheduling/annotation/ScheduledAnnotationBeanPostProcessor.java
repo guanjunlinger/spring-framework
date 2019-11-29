@@ -242,11 +242,17 @@ public class ScheduledAnnotationBeanPostProcessor
 					((ListableBeanFactory) this.beanFactory).getBeansOfType(SchedulingConfigurer.class);
 			List<SchedulingConfigurer> configurers = new ArrayList<>(beans.values());
 			AnnotationAwareOrderComparator.sort(configurers);
+			//SchedulingConfigurer对ScheduledTaskRegistrar实例进行配置
 			for (SchedulingConfigurer configurer : configurers) {
 				configurer.configureTasks(this.registrar);
 			}
 		}
-
+		/**按下列顺序配置TaskScheduler
+		 * TaskScheduler类型匹配,如有多个,按taskScheduler名字匹配
+		 * ScheduledExecutorService类型匹配,按taskScheduler名字匹配
+		 * ScheduledTaskRegistrar类的默认scheduler
+		 *
+		 */
 		if (this.registrar.hasTasks() && this.registrar.getScheduler() == null) {
 			Assert.state(this.beanFactory != null, "BeanFactory must be set to find scheduler by type");
 			try {
@@ -340,6 +346,7 @@ public class ScheduledAnnotationBeanPostProcessor
 		}
 
 		Class<?> targetClass = AopProxyUtils.ultimateTargetClass(bean);
+		//提取目标Bean所有@Scheduled注解的方法
 		if (!this.nonAnnotatedClasses.contains(targetClass)) {
 			Map<Method, Set<Scheduled>> annotatedMethods = MethodIntrospector.selectMethods(targetClass,
 					(MethodIntrospector.MetadataLookup<Set<Scheduled>>) method -> {
@@ -375,6 +382,7 @@ public class ScheduledAnnotationBeanPostProcessor
 	 */
 	protected void processScheduled(Scheduled scheduled, Method method, Object bean) {
 		try {
+			//ScheduledMethodRunnable封装@Scheduled注解方法的调用逻辑
 			Runnable runnable = createRunnable(bean, method);
 			boolean processedSchedule = false;
 			String errorMessage =
@@ -420,6 +428,7 @@ public class ScheduledAnnotationBeanPostProcessor
 						else {
 							timeZone = TimeZone.getDefault();
 						}
+						//CronTask封装Cron表达式任务
 						tasks.add(this.registrar.scheduleCronTask(new CronTask(runnable, new CronTrigger(cron, timeZone))));
 					}
 				}
