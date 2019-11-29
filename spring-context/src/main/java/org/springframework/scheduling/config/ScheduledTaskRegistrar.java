@@ -411,6 +411,7 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 			newTask = true;
 		}
 		if (this.taskScheduler != null) {
+			//Trigger实例获取下一次执行等待时间,提交ScheduledExecutorService进行调度
 			scheduledTask.future = this.taskScheduler.schedule(task.getRunnable(), task.getTrigger());
 		}
 		else {
