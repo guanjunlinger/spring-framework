@@ -148,6 +148,7 @@ public class AsyncAnnotationBeanPostProcessor extends AbstractBeanFactoryAwareAd
 
 		AsyncAnnotationAdvisor advisor = new AsyncAnnotationAdvisor(this.executor, this.exceptionHandler);
 		if (this.asyncAnnotationType != null) {
+			//增强器支持的自定义注解类型
 			advisor.setAsyncAnnotationType(this.asyncAnnotationType);
 		}
 		advisor.setBeanFactory(beanFactory);

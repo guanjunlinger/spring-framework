@@ -41,7 +41,7 @@ import org.springframework.util.function.SingletonSupplier;
  * Advisor that activates asynchronous method execution through the {@link Async}
  * annotation. This annotation can be used at the method and type level in
  * implementation classes as well as in service interfaces.
- *
+ * 管理异步任务的切点表达式和增强逻辑
  * <p>This advisor detects the EJB 3.1 {@code javax.ejb.Asynchronous}
  * annotation as well, treating it exactly like Spring's own {@code Async}.
  * Furthermore, a custom async annotation type may get specified through the
@@ -116,6 +116,7 @@ public class AsyncAnnotationAdvisor extends AbstractPointcutAdvisor implements B
 	 * <p>This setter property exists so that developers can provide their own
 	 * (non-Spring-specific) annotation type to indicate that a method is to
 	 * be executed asynchronously.
+	 * 为异步任务自定义注解提供切点表达式
 	 * @param asyncAnnotationType the desired annotation type
 	 */
 	public void setAsyncAnnotationType(Class<? extends Annotation> asyncAnnotationType) {

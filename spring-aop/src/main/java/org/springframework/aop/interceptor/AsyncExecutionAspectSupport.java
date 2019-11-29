@@ -158,6 +158,8 @@ public abstract class AsyncExecutionAspectSupport implements BeanFactoryAware {
 	 * Determine the specific executor to use when executing the given method.
 	 * Should preferably return an {@link AsyncListenableTaskExecutor} implementation.
 	 * @return the executor to use (or {@code null}, but just if no default executor is available)
+	 * 选择Executor的顺序
+	 *
 	 */
 	@Nullable
 	protected AsyncTaskExecutor determineAsyncExecutor(Method method) {
