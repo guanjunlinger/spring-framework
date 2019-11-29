@@ -81,6 +81,7 @@ public abstract class AbstractCachingConfiguration implements ImportAware {
 					"Refactor the configuration such that CachingConfigurer is " +
 					"implemented only once or not at all.");
 		}
+		//注入CachingConfigurer配置Cache元信息
 		CachingConfigurer configurer = configurers.iterator().next();
 		useCachingConfigurer(configurer);
 	}
