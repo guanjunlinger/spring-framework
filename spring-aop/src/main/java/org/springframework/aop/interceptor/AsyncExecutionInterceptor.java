@@ -109,7 +109,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 			throw new IllegalStateException(
 					"No executor specified and no default executor set on AsyncExecutionInterceptor either");
 		}
-
+        //将@Async方法调用封装成Callable任务
 		Callable<Object> task = () -> {
 			try {
 				Object result = invocation.proceed();
@@ -125,7 +125,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 			}
 			return null;
 		};
-
+		//将任务分发到AsyncTaskExecutor的不同调度方法
 		return doSubmit(task, executor, invocation.getMethod().getReturnType());
 	}
 
