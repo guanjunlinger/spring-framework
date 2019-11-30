@@ -54,6 +54,7 @@ public class ProxyCachingConfiguration extends AbstractCachingConfiguration {
 	@Bean
 	@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 	public CacheOperationSource cacheOperationSource() {
+		//配置CacheAnnotationParser来获取Cache注解配置
 		return new AnnotationCacheOperationSource();
 	}
 
@@ -63,7 +64,7 @@ public class ProxyCachingConfiguration extends AbstractCachingConfiguration {
 		CacheInterceptor interceptor = new CacheInterceptor();
 		/** CacheInterceptor组件的配置顺序
 		 *  CachingConfigurer实例类配置
-		 *  默认配置
+		 *  部分组件默认配置
 		 *  CacheAspectSupport的afterSingletonsInstantiated回调配置SimpleCacheResolver
 		 *
 		 *
