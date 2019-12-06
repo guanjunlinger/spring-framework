@@ -55,7 +55,8 @@ final class PostProcessorRegistrationDelegate {
 	 * BeanFactoryPostProcessor的优先级
 	 1.postProcessBeanDefinitionRegistry接口优先级最高(被调用两次)
 	 2.PriorityOrdered接口
-	 3.Ordered接口和@Order注解
+	 3.Ordered接口
+	 4.@Order注解
 	 */
 	public static void invokeBeanFactoryPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
@@ -190,6 +191,14 @@ final class PostProcessorRegistrationDelegate {
 		beanFactory.clearMetadataCache();
 	}
 
+	/**
+	 *BeanPostProcessor注册的优先级
+	 * 1.PriorityOrdered接口
+	 * 2.Ordered接口
+	 * 3.@Order注解
+	 *
+	 *MergedBeanDefinitionPostProcessor会被注册两次,其中第二次作为internalPostProcessor,优先级低
+	 */
 	public static void registerBeanPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {
 
@@ -199,6 +208,8 @@ final class PostProcessorRegistrationDelegate {
 		// a bean is created during BeanPostProcessor instantiation, i.e. when
 		// a bean is not eligible for getting processed by all BeanPostProcessors.
 		int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;
+        //注册BeanPostProcessorChecker Log在BeanPostProcessor实例化过程中被初始化的Bean信息
+
 		beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));
 
 		// Separate between BeanPostProcessors that implement PriorityOrdered,
