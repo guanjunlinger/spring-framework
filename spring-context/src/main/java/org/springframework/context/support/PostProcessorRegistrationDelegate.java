@@ -51,7 +51,12 @@ final class PostProcessorRegistrationDelegate {
 	private PostProcessorRegistrationDelegate() {
 	}
 
-
+	/**
+	 * BeanFactoryPostProcessor的优先级
+	 1.postProcessBeanDefinitionRegistry接口优先级最高(被调用两次)
+	 2.PriorityOrdered接口
+	 3.Ordered接口和@Order注解
+	 */
 	public static void invokeBeanFactoryPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 

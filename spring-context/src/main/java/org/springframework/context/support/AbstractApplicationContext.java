@@ -518,6 +518,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
+			/**
+			 * 配置bean后处理器:
+			 * ApplicationContextAwareProcessor
+			 * ApplicationListenerDetector:注册BeanFactoryPostProcessor和BeanPostProcessor实例化过程中包含的ApplicationListener
+			 */
+
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -528,6 +534,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				//注册并实例化BeanPostProcessor
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
