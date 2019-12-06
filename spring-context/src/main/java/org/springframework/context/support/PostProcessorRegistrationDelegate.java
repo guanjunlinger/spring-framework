@@ -198,6 +198,8 @@ final class PostProcessorRegistrationDelegate {
 	 * 3.@Order注解
 	 *
 	 *MergedBeanDefinitionPostProcessor会被注册两次,其中第二次作为internalPostProcessor,优先级低
+	 *
+	  重新注册ApplicationListenerDetector捕获ApplicationListener实例
 	 */
 	public static void registerBeanPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {
@@ -267,6 +269,7 @@ final class PostProcessorRegistrationDelegate {
 
 		// Re-register post-processor for detecting inner beans as ApplicationListeners,
 		// moving it to the end of the processor chain (for picking up proxies etc).
+		//
 		beanFactory.addBeanPostProcessor(new ApplicationListenerDetector(applicationContext));
 	}
 
