@@ -37,7 +37,7 @@ import org.springframework.util.ReflectionUtils;
 /**
  * Internal class for managing injection metadata.
  * Not intended for direct use in applications.
- *
+ * 管理targetClass所有的InjectedElement
  * <p>Used by {@link AutowiredAnnotationBeanPostProcessor},
  * {@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor} and
  * {@link org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor}.
