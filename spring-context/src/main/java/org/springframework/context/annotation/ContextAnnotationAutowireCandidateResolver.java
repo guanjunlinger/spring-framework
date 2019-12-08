@@ -40,7 +40,7 @@ import org.springframework.util.Assert;
  * {@link org.springframework.beans.factory.support.AutowireCandidateResolver} strategy
  * interface, providing support for qualifier annotations as well as for lazy resolution
  * driven by the {@link Lazy} annotation in the {@code context.annotation} package.
- *
+ *  解析@Lazy注解,生成代理对象
  * @author Juergen Hoeller
  * @since 4.0
  */
