@@ -84,6 +84,7 @@ public class AnnotatedBeanDefinitionReader {
 	 *     EventListenerMethodProcessor
 	 *     DefaultEventListenerFactory(支持@EventListener注解的Method)
 	 *
+	 *  设置ContextAnnotationAutowireCandidateResolver
 	 *
 	 * @since 3.1
 	 */

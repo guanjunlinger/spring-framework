@@ -596,7 +596,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Check for listener beans and register them.
 				/*ApplicationEventMulticaster管理所有的Listener
 				 *  1.AbstractApplicationContext硬编码添加的Listener实例
-				 *  2.Spring容器配置的ApplicationListener类型的Bean(只注册Bean名)
+				 *  2.Spring容器配置的ApplicationListener类型的BeanName
 				 *处理ApplicationEventMulticaster未初始化之前发布的事件
 				 */
 				registerListeners();
@@ -604,7 +604,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Instantiate all remaining (non-lazy-init) singletons.
 				/**
 				 * 如果存在type=ConversionService且BeanName=conversionService,则优先初始化
-				 * 如果没有配置StringValueResolver实例,则默认启用ConfigurableEnvironment解析字符串值
+				 * 通常利用PropertyPlaceholderConfigurer Bean后处理器配置StringValueResolver
 				 * 缓存所有Bean MetaData
 				 * 初始化所有剩下的singleton Bean
 				 */

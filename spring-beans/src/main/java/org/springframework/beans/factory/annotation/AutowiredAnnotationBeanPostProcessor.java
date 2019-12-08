@@ -436,7 +436,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	}
 
 	/**
-	 * 获取@Autowire和@Value注解的Method和Field
+	 * 提取与autowire相关Annotation修饰的Method和Field
 	 * 考虑类的继承
 	 */
 	private InjectionMetadata buildAutowiringMetadata(final Class<?> clazz) {
@@ -669,6 +669,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					currDesc.setContainingClass(bean.getClass());
 					descriptors[i] = currDesc;
 					try {
+						//解析注解方法
 						Object arg = beanFactory.resolveDependency(currDesc, beanName, autowiredBeans, typeConverter);
 						if (arg == null && !this.required) {
 							arguments = null;
