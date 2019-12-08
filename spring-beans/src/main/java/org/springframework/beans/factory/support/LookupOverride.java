@@ -24,7 +24,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * Represents an override of a method that looks up an object in the same IoC context.
- *
+ * //管理@Lookup 配置信息
  * <p>Methods eligible for lookup override must not have arguments.
  *
  * @author Rod Johnson
