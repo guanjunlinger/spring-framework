@@ -240,6 +240,11 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	@Override
 	@Nullable
+	/**
+	 提取进行构造器注入的候选构造器:
+	 @Autowired注解的构造器
+	 @Value 注解的构造器
+	 */
 	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, final String beanName)
 			throws BeanCreationException {
 
@@ -283,10 +288,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 										"] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
 					}
 
-					/**
-					 *   @Autowired注解的构造器
-					 * 	 @Value 注解的构造器
-					 */
 					List<Constructor<?>> candidates = new ArrayList<>(rawCandidates.length);
 					/**
 					 * 以下两种构造器的其中一个:
@@ -394,7 +395,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	/**
 	 * 'Native' processing method for direct calls with an arbitrary target instance,
 	 * resolving all of its fields and methods which are annotated with {@code @Autowired}.
-	 *
+	 *  完成Set注入和属性注入任务
 	 * @param bean the target instance to process
 	 * @throws BeanCreationException if autowiring failed
 	 */
