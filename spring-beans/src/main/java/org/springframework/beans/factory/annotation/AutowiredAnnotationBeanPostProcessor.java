@@ -253,6 +253,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 						LookupOverride override = new LookupOverride(method, lookup.value());
 						try {
 							RootBeanDefinition mbd = (RootBeanDefinition) this.beanFactory.getMergedBeanDefinition(beanName);
+							//保留MethodOverride信息
 							mbd.getMethodOverrides().addOverride(override);
 						} catch (NoSuchBeanDefinitionException ex) {
 							throw new BeanCreationException(beanName,
