@@ -311,6 +311,7 @@ public class HandlerMethod {
 	/**
 	 * If the provided instance contains a bean name rather than an object instance,
 	 * the bean name is resolved before a {@link HandlerMethod} is created and returned.
+	 * 如果 Handler 实例代表 beanName,则从容器获取实例,并返回解析后的新实例
 	 */
 	public HandlerMethod createWithResolvedBean() {
 		Object handler = this.bean;
