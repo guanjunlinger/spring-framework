@@ -284,7 +284,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					}
 
 					/**
-					 *   @AutoWire注解的构造器
+					 *   @Autowired注解的构造器
 					 * 	 @Value 注解的构造器
 					 */
 					List<Constructor<?>> candidates = new ArrayList<>(rawCandidates.length);
@@ -294,9 +294,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					 * @Value 注解的构造器
 					 */
 					Constructor<?> requiredConstructor = null;
-					/**
-					 * 默认无参构造器
-					 */
 					Constructor<?> defaultConstructor = null;
 					Constructor<?> primaryConstructor = BeanUtils.findPrimaryConstructor(beanClass);
 					int nonSyntheticConstructors = 0;
@@ -306,7 +303,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 						} else if (primaryConstructor != null) {
 							continue;
 						}
-						//提取构造器上的@Autowired或者@Value注解属性信息
 						AnnotationAttributes ann = findAutowiredAnnotation(candidate);
 						if (ann == null) {
 							//考虑Cglib代理
