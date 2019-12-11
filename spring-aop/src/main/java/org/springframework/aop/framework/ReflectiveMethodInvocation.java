@@ -36,7 +36,7 @@ import org.springframework.lang.Nullable;
  * implementing the extended
  * {@link org.springframework.aop.ProxyMethodInvocation} interface.
  *  管理MethodInterceptor列表
- *  责任链模式处理目标类方法调用
+ *  责任链节点控制模式处理目标类方法调用
  * <p>Invokes the target object using reflection. Subclasses can override the
  * {@link #invokeJoinpoint()} method to change this behavior, so this is also
  * a useful base class for more specialized MethodInvocation implementations.
