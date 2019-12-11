@@ -27,7 +27,7 @@ import org.springframework.aop.ThrowsAdvice;
 /**
  * Adapter to enable {@link org.springframework.aop.MethodBeforeAdvice}
  * to be used in the Spring AOP framework.
- *
+ * 适配器模式,将ThrowsAdvice接口适配到MethodInterceptor接口
  * @author Rod Johnson
  * @author Juergen Hoeller
  */
