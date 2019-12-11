@@ -31,7 +31,7 @@ import org.springframework.util.ObjectUtils;
 /**
  * Handler execution chain, consisting of handler object and any handler interceptors.
  * Returned by HandlerMapping's {@link HandlerMapping#getHandler} method.
- *
+ *  责任链外部控制模式(外部系统控制节点传递)
  * @author Juergen Hoeller
  * @since 20.06.2003
  * @see HandlerInterceptor
@@ -134,7 +134,6 @@ public class HandlerExecutionChain {
 			for (int i = 0; i < interceptors.length; i++) {
 				HandlerInterceptor interceptor = interceptors[i];
 				if (!interceptor.preHandle(request, response, this.handler)) {
-					//如果拦截器的preHandler方法返回false,则逆序执行preHandler执行成功的拦截器的afterCompletion方法
 					triggerAfterCompletion(request, response, null);
 					return false;
 				}
