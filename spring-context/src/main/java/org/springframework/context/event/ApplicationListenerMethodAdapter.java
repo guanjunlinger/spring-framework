@@ -46,7 +46,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@link GenericApplicationListener} adapter that delegates the processing of
  * an event to an {@link EventListener} annotated method.
- *
+ * 适配器模式,将@EventListener注解方法适配到ApplicationListener接口
  * <p>Delegates to {@link #processEvent(ApplicationEvent)} to give sub-classes
  * a chance to deviate from the default. Unwraps the content of a
  * {@link PayloadApplicationEvent} if necessary to allow method declaration
