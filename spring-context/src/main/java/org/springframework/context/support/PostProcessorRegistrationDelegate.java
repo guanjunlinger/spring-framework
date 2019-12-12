@@ -199,7 +199,7 @@ final class PostProcessorRegistrationDelegate {
 	 *
 	 *MergedBeanDefinitionPostProcessor会被注册两次,其中第二次作为internalPostProcessor,优先级低
 	 *
-	  重新注册ApplicationListenerDetector捕获ApplicationListener实例
+	  重新注册ApplicationListenerDetector捕获type=ApplicationListener实例
 	 */
 	public static void registerBeanPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {
