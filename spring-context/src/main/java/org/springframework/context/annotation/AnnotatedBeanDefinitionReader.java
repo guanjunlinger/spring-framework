@@ -263,7 +263,7 @@ public class AnnotatedBeanDefinitionReader {
 		}
 
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
-		//@Scope配置ScopedProxyMode,默认不启用动态代理；否则用RootBeanDefinition提供统一的BeanDefinition视图
+		//@Scope配置ScopedProxyMode,默认不启用动态代理；否则利用ScopedProxyFactoryBean获取代理实例
 		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
 	}
