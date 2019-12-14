@@ -30,7 +30,6 @@ import org.springframework.core.PriorityOrdered;
  * Interceptor that exposes the current {@link org.aopalliance.intercept.MethodInvocation}
  * as a thread-local object. We occasionally need to do this; for example, when a pointcut
  * (e.g. an AspectJ expression pointcut) needs to know the full invocation context.
- * MethodInterceptor用于暴露MethodInvocation上下文信息
  * <p>Don't use this interceptor unless this is really necessary. Target objects should
  * not normally know about Spring AOP, as this creates a dependency on Spring API.
  * Target objects should be plain POJOs as far as possible.

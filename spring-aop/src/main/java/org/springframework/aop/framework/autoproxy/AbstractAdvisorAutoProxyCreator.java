@@ -92,8 +92,13 @@ public abstract class AbstractAdvisorAutoProxyCreator extends AbstractAutoProxyC
 	 */
 	protected List<Advisor> findEligibleAdvisors(Class<?> beanClass, String beanName) {
 		List<Advisor> candidateAdvisors = findCandidateAdvisors();
+		//Pointcut信息过滤不匹配的Advisor
 		List<Advisor> eligibleAdvisors = findAdvisorsThatCanApply(candidateAdvisors, beanClass, beanName);
-		extendAdvisors(eligibleAdvisors);
+		/**
+		 子类扩展匹配Advisor列表,默认AspectJAwareAdvisorAutoProxyCreator类注册ExposeInvocationInterceptor.ADVISOR
+		 作用是暴露当前的MethodInvocation上下文
+		 */
+		 extendAdvisors(eligibleAdvisors);
 		if (!eligibleAdvisors.isEmpty()) {
 			eligibleAdvisors = sortAdvisors(eligibleAdvisors);
 		}
