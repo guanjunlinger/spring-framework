@@ -32,7 +32,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * an event to a {@link TransactionalEventListener} annotated method. Supports
  * the exact same features as any regular {@link EventListener} annotated method
  * but is aware of the transactional context of the event publisher.
- *
+ * 将@TransactionalEventListener注解方法适配到ApplicationListener接口
  * <p>Processing of {@link TransactionalEventListener} is enabled automatically
  * when Spring's transaction management is enabled. For other cases, registering
  * a bean of type {@link TransactionalEventListenerFactory} is required.

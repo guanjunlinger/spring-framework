@@ -79,7 +79,7 @@ public class AnnotatedBeanDefinitionReader {
 	 *                    in the form of a {@code BeanDefinitionRegistry}
 	 * @param environment the {@code Environment} to use when evaluating bean definition
 	 *                    profiles.
-	 *                    注册与注解相关的Bean后处理器和工厂后处理器的BeanDefinition:
+	 *                    注册与注解相关的Bean后处理器和工厂后处理器:
 	 *                    ConfigurationClassPostProcessor
 	 *                    AutowiredAnnotationBeanPostProcessor
 	 *                    CommonAnnotationBeanPostProcessor

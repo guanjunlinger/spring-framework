@@ -107,6 +107,7 @@ public class ScopedProxyFactoryBean extends ProxyConfig
 		}
 
 		// Add an introduction that implements only the methods on ScopedObject.
+		//向所有@Scope 代理类暴露ScopedObject接口
 		ScopedObject scopedObject = new DefaultScopedObject(cbf, this.scopedTargetSource.getTargetBeanName());
 		pf.addAdvice(new DelegatingIntroductionInterceptor(scopedObject));
 
