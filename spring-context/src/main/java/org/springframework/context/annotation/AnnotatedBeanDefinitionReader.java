@@ -79,14 +79,18 @@ public class AnnotatedBeanDefinitionReader {
 	 *                    in the form of a {@code BeanDefinitionRegistry}
 	 * @param environment the {@code Environment} to use when evaluating bean definition
 	 *                    profiles.
-	 *                    注册与注解相关的Bean后处理器和工厂后处理器:
-	 *                    ConfigurationClassPostProcessor
-	 *                    AutowiredAnnotationBeanPostProcessor
-	 *                    CommonAnnotationBeanPostProcessor
-	 *                    EventListenerMethodProcessor
-	 *                    DefaultEventListenerFactory(支持@EventListener注解的Method)
-	 *                    <p>
-	 *                    设置ContextAnnotationAutowireCandidateResolver
+	 *                    1.注册BeanFactoryPostProcessor:
+	 *                       ConfigurationClassPostProcessor
+	 *                       EventListenerMethodProcessor
+	 *
+	 *                    2.注册BeanPostProcessor:
+	 *                      AutowiredAnnotationBeanPostProcessor  order = Ordered.LOWEST_PRECEDENCE - 2
+	 *                      CommonAnnotationBeanPostProcessor     order = Ordered.LOWEST_PRECEDENCE - 3
+	 *
+	 *
+	 *                    3.注册工具类
+	 *                      默认注册DefaultEventListenerFactory    order=Ordered.LOWEST_PRECEDENCE
+	                        为BeanFactory配置ContextAnnotationAutowireCandidateResolver
 	 * @since 3.1
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environment environment) {
@@ -253,7 +257,6 @@ public class AnnotatedBeanDefinitionReader {
 					abd.setLazyInit(true);
 				}
 				else {
-                    //细化autowire candidates的匹配逻辑
 					abd.addQualifier(new AutowireCandidateQualifier(qualifier));
 				}
 			}
