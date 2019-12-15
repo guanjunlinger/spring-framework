@@ -240,15 +240,11 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 	@Override
 	@Nullable
-	/**
-	 提取进行构造器注入的候选构造器:
-	 @Autowired注解的构造器
-	 @Value 注解的构造器
-	 */
 	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, final String beanName)
 			throws BeanCreationException {
 
 		// Let's check for lookup methods here..
+		//提取@Lookup MethodOverride信息
 		if (!this.lookupMethodsChecked.contains(beanName)) {
 			try {
 				ReflectionUtils.doWithMethods(beanClass, method -> {
@@ -258,7 +254,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 						LookupOverride override = new LookupOverride(method, lookup.value());
 						try {
 							RootBeanDefinition mbd = (RootBeanDefinition) this.beanFactory.getMergedBeanDefinition(beanName);
-							//保留MethodOverride信息
 							mbd.getMethodOverrides().addOverride(override);
 						} catch (NoSuchBeanDefinitionException ex) {
 							throw new BeanCreationException(beanName,
@@ -434,7 +429,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 	}
 
 	/**
-	 * 提取与autowire相关Annotation修饰的Method和Field
+	 * 提取需要依赖注入的Method和Field
 	 * 考虑类的继承
 	 */
 	private InjectionMetadata buildAutowiringMetadata(final Class<?> clazz) {
