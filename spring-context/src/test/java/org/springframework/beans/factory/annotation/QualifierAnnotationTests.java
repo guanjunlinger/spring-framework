@@ -7,12 +7,22 @@ import org.springframework.stereotype.Component;
 public class QualifierAnnotationTests {
 
 	@Test
-	public void test() {
+	public void testQualifierAnnotation() {
 		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
 		annotationConfigApplicationContext.register(MyService1.class, MyService2.class,Person.class);
 		annotationConfigApplicationContext.refresh();
 		Person person = annotationConfigApplicationContext.getBean(Person.class);
 		person.getService().doService();
+
+	}
+
+	@Test
+	public void testGetBean() {
+		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
+		annotationConfigApplicationContext.register(MyService1.class);
+		annotationConfigApplicationContext.refresh();
+		MyService1 myService1 = annotationConfigApplicationContext.getBean(MyService1.class);
+		myService1.doService();
 
 	}
 
