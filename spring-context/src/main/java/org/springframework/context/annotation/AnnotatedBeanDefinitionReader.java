@@ -89,7 +89,7 @@ public class AnnotatedBeanDefinitionReader {
 	 *
 	 *
 	 *                    3.注册工具类
-	 *                      默认注册DefaultEventListenerFactory    order=Ordered.LOWEST_PRECEDENCE
+	 *                      注册DefaultEventListenerFactory    order=Ordered.LOWEST_PRECEDENCE
 	                        为BeanFactory配置ContextAnnotationAutowireCandidateResolver
 	 * @since 3.1
 	 */
