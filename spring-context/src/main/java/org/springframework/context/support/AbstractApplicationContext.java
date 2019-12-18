@@ -567,7 +567,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			/**
 			 * 配置bean后处理器:
 			 * ApplicationContextAwareProcessor
-			 * ApplicationListenerDetector:注册BeanFactoryPostProcessor和BeanPostProcessor实例化过程中包含的ApplicationListener
+			 * ApplicationListenerDetector
 			 */
 
 			prepareBeanFactory(beanFactory);
@@ -613,8 +613,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Last step: publish corresponding event.
 				/**
 				 * 如果没有LifecycleProcessor实例,则默认启用DefaultLifecycleProcessor管理Lifecycle接口
-				   发布ContextRefreshedEvent类型事件
-				   若Environment有spring.liveBeansView.mbeanDomain属性;则将LiveBeansView注册为MBean
+				 发布ContextRefreshedEvent类型事件
+				 若Environment有spring.liveBeansView.mbeanDomain属性;则将LiveBeansView注册为MBean
 				 */
 				finishRefresh();
 			} catch (BeansException ex) {
@@ -987,8 +987,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Register a shutdown hook with the JVM runtime, closing this context
 	 * on JVM shutdown unless it has already been closed at that time.
 	 * <p>Delegates to {@code doClose()} for the actual closing procedure.
-	 *   发布ContextClosedEvent类型事件
-	 *   执行LifecycleProcessor的onClose回调方法
+	 * 发布ContextClosedEvent类型事件
+	 * 执行LifecycleProcessor的onClose回调方法
+	 *
 	 * @see Runtime#addShutdownHook
 	 * @see #close()
 	 * @see #doClose()
