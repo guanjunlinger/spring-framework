@@ -254,7 +254,7 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 	}
 
 	/**
-	 * Add a Runnable task to be triggered per the given cron expression.
+	 * Add a Runnable task to be triggered per the given cron expression
 	 */
 	public void addCronTask(Runnable task, String expression) {
 		addCronTask(new CronTask(task, expression));
@@ -411,7 +411,6 @@ public class ScheduledTaskRegistrar implements ScheduledTaskHolder, Initializing
 			newTask = true;
 		}
 		if (this.taskScheduler != null) {
-			//Trigger实例获取下一次执行等待时间,提交ScheduledExecutorService进行调度
 			scheduledTask.future = this.taskScheduler.schedule(task.getRunnable(), task.getTrigger());
 		}
 		else {
