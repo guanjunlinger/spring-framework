@@ -181,7 +181,7 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-
+		//扩展ImportSelector接口,支持分组处理
 		this.deferredImportSelectorHandler.process();
 	}
 
