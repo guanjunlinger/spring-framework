@@ -30,6 +30,9 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
@@ -61,6 +64,12 @@ public class BeanFactoryPostProcessorTests {
 		assertFalse(bfpp.wasCalled);
 		ac.refresh();
 		assertTrue(bfpp.wasCalled);
+	}
+
+	@Test
+	public void testPlaceHolderBeanFactoryPostProcessor() {
+		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(Factory.class);
+		ac.registerShutdownHook();
 	}
 
 	@Test
@@ -276,6 +285,21 @@ public class BeanFactoryPostProcessorTests {
 		@Override
 		public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		}
+	}
+
+	@Configuration
+	public static class Factory {
+
+		@Bean
+		public String name() {
+			return "12345";
+		}
+
+		@Bean
+		public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
+			return new PropertyPlaceholderConfigurer();
+		}
+
 	}
 
 }
