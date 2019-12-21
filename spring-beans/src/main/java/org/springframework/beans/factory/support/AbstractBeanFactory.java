@@ -1256,7 +1256,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						mbd = ((RootBeanDefinition) bd).cloneBeanDefinition();
 					}
 					else {
-						//直接深复制最初的BeanDefinition
 						mbd = new RootBeanDefinition(bd);
 					}
 				}
@@ -1264,7 +1263,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					// Child bean definition: needs to be merged with parent.
 					BeanDefinition pbd;
 					try {
-						//获取ParentBeanName(过滤FactoryBean前缀;自动将别名映射到BeanName)
 						String parentBeanName = transformedBeanName(bd.getParentName());
 						if (!beanName.equals(parentBeanName)) {
 							pbd = getMergedBeanDefinition(parentBeanName);
@@ -1292,7 +1290,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Set default singleton scope, if not configured before.
 				if (!StringUtils.hasLength(mbd.getScope())) {
-					//默认所有Bean都是单例
 					mbd.setScope(RootBeanDefinition.SCOPE_SINGLETON);
 				}
 
