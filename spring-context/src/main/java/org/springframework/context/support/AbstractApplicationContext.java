@@ -566,8 +566,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Prepare the bean factory for use in this context.
 			/**
 			 * 配置bean后处理器:
-			 * ApplicationContextAwareProcessor
-			 * ApplicationListenerDetector
+			 *   ApplicationContextAwareProcessor
+			 *   ApplicationListenerDetector
+			 * 配置StandardBeanExpressionResolver处理SpEL表达式
 			 */
 
 			prepareBeanFactory(beanFactory);
@@ -604,7 +605,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Instantiate all remaining (non-lazy-init) singletons.
 				/**
 				 * 如果存在type=ConversionService且BeanName=conversionService,则优先初始化
-				 * 通常利用PropertyPlaceholderConfigurer Bean后处理器配置StringValueResolver
+				 * 通常利用PropertyPlaceholderConfigurer BeanFactory后处理器配置PlaceholderResolvingStringValueResolver,否则利用环境自带PropertyPlaceholderHelper解析
 				 * 缓存所有Bean MetaData
 				 * 初始化所有剩下的singleton Bean
 				 */

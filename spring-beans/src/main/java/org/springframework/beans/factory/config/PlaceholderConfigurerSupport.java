@@ -212,7 +212,7 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 	protected void doProcessProperties(ConfigurableListableBeanFactory beanFactoryToProcess,
 			StringValueResolver valueResolver) {
-
+        //处理BeanDefinition中的占位符
 		BeanDefinitionVisitor visitor = new BeanDefinitionVisitor(valueResolver);
 
 		String[] beanNames = beanFactoryToProcess.getBeanDefinitionNames();
@@ -232,7 +232,7 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 		// New in Spring 2.5: resolve placeholders in alias target names and aliases as well.
 		beanFactoryToProcess.resolveAliases(valueResolver);
-
+        //配置PlaceholderResolvingStringValueResolver 解析占位符
 		// New in Spring 3.0: resolve placeholders in embedded values such as annotation attributes.
 		beanFactoryToProcess.addEmbeddedValueResolver(valueResolver);
 	}
