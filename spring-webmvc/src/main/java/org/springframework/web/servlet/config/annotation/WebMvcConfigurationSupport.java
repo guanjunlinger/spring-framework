@@ -267,7 +267,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		return this.servletContext;
 	}
 
-    //注册HandlerMethod,order=0
+	//注册HandlerMethod,order=0
 	@Bean
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 		RequestMappingHandlerMapping mapping = createRequestMappingHandlerMapping();
@@ -583,15 +583,11 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		adapter.setCustomReturnValueHandlers(getReturnValueHandlers());
 
 		if (jackson2Present) {
-			//对Jackson处理器和@Jsonview注解应用增强
 			adapter.setRequestBodyAdvice(Collections.singletonList(new JsonViewRequestBodyAdvice()));
 			adapter.setResponseBodyAdvice(Collections.singletonList(new JsonViewResponseBodyAdvice()));
 		}
-
-		//异步请求的全局配置器
 		AsyncSupportConfigurer configurer = new AsyncSupportConfigurer();
 		configureAsyncSupport(configurer);
-		//默认是SimpleAsyncTaskExecutor 线程池
 		if (configurer.getTaskExecutor() != null) {
 			adapter.setTaskExecutor(configurer.getTaskExecutor());
 		}
@@ -965,7 +961,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		exceptionHandlerResolver.setMessageConverters(getMessageConverters());
 		exceptionHandlerResolver.setCustomArgumentResolvers(getArgumentResolvers());
 		exceptionHandlerResolver.setCustomReturnValueHandlers(getReturnValueHandlers());
-		//添加框架内置的ResponseBodyAdvice对象
 		if (jackson2Present) {
 			exceptionHandlerResolver.setResponseBodyAdvice(
 					Collections.singletonList(new JsonViewResponseBodyAdvice()));
@@ -1046,6 +1041,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return the registered {@link CorsConfiguration} objects,
 	 * keyed by path pattern.
 	 * 返回CORS全局配置信息
+	 *
 	 * @since 4.2
 	 */
 	protected final Map<String, CorsConfiguration> getCorsConfigurations() {
