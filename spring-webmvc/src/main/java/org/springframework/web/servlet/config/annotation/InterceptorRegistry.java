@@ -41,6 +41,7 @@ public class InterceptorRegistry {
 
 	/**
 	 * Adds the provided {@link HandlerInterceptor}.
+	 *
 	 * @param interceptor the interceptor to add
 	 * @return an {@link InterceptorRegistration} that allows you optionally configure the
 	 * registered interceptor further for example adding URL patterns it should apply to.
@@ -53,10 +54,10 @@ public class InterceptorRegistry {
 
 	/**
 	 * Adds the provided {@link WebRequestInterceptor}.
+	 *
 	 * @param interceptor the interceptor to add
 	 * @return an {@link InterceptorRegistration} that allows you optionally configure the
 	 * registered interceptor further for example adding URL patterns it should apply to.
-	 * 将WebRequestInterceptor接口适配到HandlerInterceptor接口
 	 */
 	public InterceptorRegistration addWebRequestInterceptor(WebRequestInterceptor interceptor) {
 		WebRequestHandlerInterceptorAdapter adapted = new WebRequestHandlerInterceptorAdapter(interceptor);

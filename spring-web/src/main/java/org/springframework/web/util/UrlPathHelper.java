@@ -320,7 +320,7 @@ public class UrlPathHelper {
 		String uri = (String) request.getAttribute(WebUtils.INCLUDE_REQUEST_URI_ATTRIBUTE);
 		if (uri == null) {
 			uri = request.getRequestURI();
-		}
+	}
 		return decodeAndCleanUriString(request, uri);
 	}
 

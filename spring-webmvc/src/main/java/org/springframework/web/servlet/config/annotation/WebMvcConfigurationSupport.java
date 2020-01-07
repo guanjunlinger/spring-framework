@@ -299,6 +299,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		if (pathMatcher != null) {
 			mapping.setPathMatcher(pathMatcher);
 		}
+		//以处理器为单位,为符合条件的URI添加前缀
 		Map<String, Predicate<Class<?>>> pathPrefixes = configurer.getPathPrefixes();
 		if (pathPrefixes != null) {
 			mapping.setPathPrefixes(pathPrefixes);
