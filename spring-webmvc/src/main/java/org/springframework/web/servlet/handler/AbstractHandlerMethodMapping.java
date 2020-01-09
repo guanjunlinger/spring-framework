@@ -349,6 +349,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	 */
 	@Override
 	protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {
+		//
 		String lookupPath = getUrlPathHelper().getLookupPathForRequest(request);
 		this.mappingRegistry.acquireReadLock();
 		try {
@@ -586,9 +587,10 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				//建立RequestMappingInfo和HandlerMethod之间的映射关系
 				this.mappingLookup.put(mapping, handlerMethod);
 
+				//获取无通配符的URL
 				List<String> directUrls = getDirectUrls(mapping);
 				for (String url : directUrls) {
-					//建立没有通配符的URL和RequestMappingInfo之间的映射关系
+					//建立URL和RequestMappingInfo之间的映射关系,直接匹配
 					this.urlLookup.add(url, mapping);
 				}
 
