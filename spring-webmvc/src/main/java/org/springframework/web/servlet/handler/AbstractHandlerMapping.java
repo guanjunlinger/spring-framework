@@ -548,10 +548,10 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 		if (CorsUtils.isPreFlightRequest(request)) {
 			HandlerInterceptor[] interceptors = chain.getInterceptors();
-			//预检请求直接替换成HttpRequestHandler处理器
+			//option请求直接替换成PreFlightHandler处理器
 			chain = new HandlerExecutionChain(new PreFlightHandler(config), interceptors);
 		} else {
-			//预检请求关联的真实请求,添加CorsInterceptor拦截器
+			//跨域请求,添加CorsInterceptor拦截器
 			chain.addInterceptor(new CorsInterceptor(config));
 		}
 		return chain;
