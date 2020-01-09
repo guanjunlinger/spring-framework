@@ -225,7 +225,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 			if (logger.isTraceEnabled() && uriTemplateVariables.size() > 0) {
 				logger.trace("URI variables " + uriTemplateVariables);
 			}
-			//通过
+			//通过PathExposingHandlerInterceptor暴露路径信息;UriTemplateVariablesHandlerInterceptor暴露模板变量
 			return buildPathExposingHandler(handler, bestMatch, pathWithinMapping, uriTemplateVariables);
 		}
 
