@@ -602,7 +602,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 					//建立RequestMappingInfo的name属性和HandlerMethod之间的映射关系
 					addMappingName(name, handlerMethod);
 				}
-                    //建立HandlerMethod和CorsConfiguration对象之间的映射关系
+                    //提取@CrossOrigin注解配置的CORS信息
 				CorsConfiguration corsConfig = initCorsConfiguration(handler, method, mapping);
 				if (corsConfig != null) {
 					this.corsLookup.put(handlerMethod, corsConfig);

@@ -274,6 +274,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		mapping.setOrder(0);
 		mapping.setInterceptors(getInterceptors());
 		mapping.setContentNegotiationManager(mvcContentNegotiationManager());
+		//全局CORS配置
 		mapping.setCorsConfigurations(getCorsConfigurations());
 
 		PathMatchConfigurer configurer = getPathMatchConfigurer();
@@ -1041,7 +1042,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Return the registered {@link CorsConfiguration} objects,
 	 * keyed by path pattern.
-	 * 返回CORS全局配置信息
 	 *
 	 * @since 4.2
 	 */

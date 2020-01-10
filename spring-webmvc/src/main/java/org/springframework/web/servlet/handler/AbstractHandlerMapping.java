@@ -436,11 +436,10 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 		} else if (logger.isDebugEnabled() && !request.getDispatcherType().equals(DispatcherType.ASYNC)) {
 			logger.debug("Mapped to " + executionChain.getHandler());
 		}
-		//特殊处理CORS请求
 		if (CorsUtils.isCorsRequest(request)) {
-			//获取全局与URL匹配的CORS信息
+			//CorsConfigurationSource实现类包含CorsConfiguration集合信息
 			CorsConfiguration globalConfig = this.corsConfigurationSource.getCorsConfiguration(request);
-			//获取处理器配置的CORS信息
+			//子类定义Handler的CORS配置信息的获取方式
 			CorsConfiguration handlerConfig = getCorsConfiguration(handler, request);
 			CorsConfiguration config = (globalConfig != null ? globalConfig.combine(handlerConfig) : handlerConfig);
 			executionChain = getCorsHandlerExecutionChain(request, executionChain, config);
