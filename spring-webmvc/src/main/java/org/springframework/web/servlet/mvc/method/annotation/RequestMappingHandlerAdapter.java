@@ -172,9 +172,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	private int cacheSecondsForSessionAttributeHandlers = 0;
 
 	private boolean synchronizeOnSession = false;
-	/**
-	 * 单例模式管理会话属性
-	 */
+
 	private SessionAttributeStore sessionAttributeStore = new DefaultSessionAttributeStore();
 
 	private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
