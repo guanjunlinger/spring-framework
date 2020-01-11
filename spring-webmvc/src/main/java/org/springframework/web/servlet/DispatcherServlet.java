@@ -1202,7 +1202,7 @@ public class DispatcherServlet extends FrameworkServlet {
 					logger.trace("Request already resolved to MultipartHttpServletRequest, e.g. by MultipartFilter");
 				}
 			}
-			//考虑Servlet容器的ErrorPage机制
+			//兼容Servlet容器的ErrorPage机制
 			else if (hasMultipartException(request)) {
 				logger.debug("Multipart resolution previously failed for current request - " +
 						"skipping re-resolution for undisturbed error rendering");
