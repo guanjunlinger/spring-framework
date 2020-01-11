@@ -31,7 +31,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Servlet 3.0 支持通过 {@link ServletContainerInitializer}配置Servlet容器
+ * Servlet 3.0 {@link ServletContainerInitializer} designed to support code-based
+ * configuration of the servlet container using Spring's {@link WebApplicationInitializer}
+ * SPI as opposed to (or possibly in combination with) the traditional
+ * {@code web.xml}-based approach.
  *
  * <h2>Mechanism of Operation</h2>
  * This class will be loaded and instantiated and have its {@link #onStartup}
@@ -104,6 +107,8 @@ import org.springframework.util.ReflectionUtils;
  * @since 3.1
  * @see #onStartup(Set, ServletContext)
  * @see WebApplicationInitializer
+ * Servlet 3.0通过SPI支持Java配置ServletContainer
+ * Spring将ServletContainer的配置代理给WebApplicationInitializer的实现类
  */
 @HandlesTypes(WebApplicationInitializer.class)
 public class SpringServletContainerInitializer implements ServletContainerInitializer {
