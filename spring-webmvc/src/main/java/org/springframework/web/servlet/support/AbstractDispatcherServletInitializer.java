@@ -103,7 +103,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 				registerServletFilter(servletContext, filter);
 			}
 		}
-
+        //MultipartConfigElement扩展点
 		customizeRegistration(registration);
 	}
 
