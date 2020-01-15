@@ -867,11 +867,9 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 
 			ServletInvocableHandlerMethod invocableMethod = createInvocableHandlerMethod(handlerMethod);
 			if (this.argumentResolvers != null) {
-				//设置InvocableHandlerMethod的argumentResolvers
 				invocableMethod.setHandlerMethodArgumentResolvers(this.argumentResolvers);
 			}
 			if (this.returnValueHandlers != null) {
-				//设置ServletInvocableHandlerMethod的returnValueHandlers
 				invocableMethod.setHandlerMethodReturnValueHandlers(this.returnValueHandlers);
 			}
 			invocableMethod.setDataBinderFactory(binderFactory);
@@ -891,7 +889,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			asyncManager.registerCallableInterceptors(this.callableInterceptors);
 			asyncManager.registerDeferredResultInterceptors(this.deferredResultInterceptors);
 
-			//异步请求完成,则ConcurrentResultHandlerMethod封装特殊处理逻辑
+			//异步请求完成,则构造ConcurrentResultHandlerMethod, HandlerMethod仅仅返回异步处理结果
 			if (asyncManager.hasConcurrentResult()) {
 				Object result = asyncManager.getConcurrentResult();
 				mavContainer = (ModelAndViewContainer) asyncManager.getConcurrentResultContext()[0];
@@ -902,9 +900,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				});
 				invocableMethod = invocableMethod.wrapConcurrentResult(result);
 			}
-			//正常处理器流程 不需要提供额外参数
 			invocableMethod.invokeAndHandle(webRequest, mavContainer);
-			//当前是异步请求直接返回null
 			if (asyncManager.isConcurrentHandlingStarted()) {
 				return null;
 			}

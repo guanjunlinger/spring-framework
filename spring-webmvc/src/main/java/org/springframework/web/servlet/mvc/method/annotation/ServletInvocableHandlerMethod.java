@@ -92,12 +92,13 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	/**
 	 * Invoke the method and handle the return value through one of the
 	 * configured {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
-	 * @param webRequest the current request
+	 *
+	 * @param webRequest   the current request
 	 * @param mavContainer the ModelAndViewContainer for this request
 	 * @param providedArgs "given" arguments matched by type (not resolved)
 	 */
 	public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,
-			Object... providedArgs) throws Exception {
+								Object... providedArgs) throws Exception {
 
 		Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
 		//解析HandlerMethod上的@ResponseStatus注解,设置响应码
@@ -109,8 +110,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 				mavContainer.setRequestHandled(true);
 				return;
 			}
-		}
-		else if (StringUtils.hasText(getResponseStatusReason())) {
+		} else if (StringUtils.hasText(getResponseStatusReason())) {
 			//设置错误理由,直接完成请求处理
 			mavContainer.setRequestHandled(true);
 			return;
@@ -121,8 +121,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		try {
 			this.returnValueHandlers.handleReturnValue(
 					returnValue, getReturnValueType(returnValue), mavContainer, webRequest);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			if (logger.isTraceEnabled()) {
 				logger.trace(formatErrorForReturnValue(returnValue), ex);
 			}
@@ -144,8 +143,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 			String reason = getResponseStatusReason();
 			if (StringUtils.hasText(reason)) {
 				response.sendError(status.value(), reason);
-			}
-			else {
+			} else {
 				response.setStatus(status.value());
 			}
 		}
@@ -156,6 +154,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 
 	/**
 	 * Does the given request qualify as "not modified"?
+	 *
 	 * @see ServletWebRequest#checkNotModified(long)
 	 * @see ServletWebRequest#checkNotModified(String)
 	 */
@@ -185,8 +184,6 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 	 * simple {@link Callable} instead of the original controller as the handler in
 	 * order to return the fixed (concurrent) result value given to it. Effectively
 	 * "resumes" processing with the asynchronously produced return value.
-	 *
-	 * 内部类简化异步请求的处理
 	 */
 	private class ConcurrentResultHandlerMethod extends ServletInvocableHandlerMethod {
 
@@ -194,14 +191,11 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 
 		public ConcurrentResultHandlerMethod(final Object result, ConcurrentResultMethodParameter returnType) {
 			super((Callable<Object>) () -> {
-				//异步处理失败,直接抛出异常
 				if (result instanceof Exception) {
 					throw (Exception) result;
-				}
-				else if (result instanceof Throwable) {
+				} else if (result instanceof Throwable) {
 					throw new NestedServletException("Async processing failed", (Throwable) result);
 				}
-				//异步处理成功,直接返回异步执行的结果
 				return result;
 			}, CALLABLE_METHOD);
 
