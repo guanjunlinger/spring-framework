@@ -457,7 +457,6 @@ public final class WebAsyncManager {
 
 		try {
 			interceptorChain.applyPreProcess(this.asyncWebRequest, deferredResult);
-			//设置ResultHandler处理器
 			deferredResult.setResultHandler(result -> {
 				result = interceptorChain.applyPostProcess(this.asyncWebRequest, deferredResult, result);
 				setConcurrentResultAndDispatch(result);

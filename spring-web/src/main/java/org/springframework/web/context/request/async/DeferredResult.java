@@ -34,7 +34,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  * asynchronous request processing. While a {@code Callable} is executed concurrently
  * on behalf of the application, with a {@code DeferredResult} the application can
  * produce the result from a thread of its choice.
- *
+ * 允许在用户线程中设置result
  * <p>Subclasses can extend this class to easily associate additional data or behavior
  * with the {@link DeferredResult}. For example, one might want to associate the user
  * used to create the {@link DeferredResult} by extending the class and adding an
