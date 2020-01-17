@@ -244,7 +244,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			throws BeanCreationException {
 
 		// Let's check for lookup methods here..
-		//提取@Lookup MethodOverride信息
 		if (!this.lookupMethodsChecked.contains(beanName)) {
 			try {
 				ReflectionUtils.doWithMethods(beanClass, method -> {
@@ -284,11 +283,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 					}
 
 					List<Constructor<?>> candidates = new ArrayList<>(rawCandidates.length);
-					/**
-					 * 以下两种构造器的其中一个:
-					 * @AutoWire require=true 的构造器
-					 * @Value 注解的构造器
-					 */
+
 					Constructor<?> requiredConstructor = null;
 					Constructor<?> defaultConstructor = null;
 					Constructor<?> primaryConstructor = BeanUtils.findPrimaryConstructor(beanClass);
@@ -301,7 +296,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 						}
 						AnnotationAttributes ann = findAutowiredAnnotation(candidate);
 						if (ann == null) {
-							//考虑Cglib代理
 							Class<?> userClass = ClassUtils.getUserClass(beanClass);
 							if (userClass != beanClass) {
 								try {
@@ -347,7 +341,6 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 										"default constructor to fall back to: " + candidates.get(0));
 							}
 						}
-						//直接返回requiredConstructor对应实例
 						candidateConstructors = candidates.toArray(new Constructor<?>[0]);
 					} else if (rawCandidates.length == 1 && rawCandidates[0].getParameterCount() > 0) {
 						candidateConstructors = new Constructor<?>[]{rawCandidates[0]};
