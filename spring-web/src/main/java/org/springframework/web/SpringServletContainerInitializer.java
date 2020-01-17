@@ -107,8 +107,8 @@ import org.springframework.util.ReflectionUtils;
  * @since 3.1
  * @see #onStartup(Set, ServletContext)
  * @see WebApplicationInitializer
- * Servlet 3.0通过SPI支持Java配置ServletContainer
  * Spring将ServletContainer的配置代理给WebApplicationInitializer的实现类
+ * Tomcat为jar包提供ServletContainerInitializer SPI扩展点
  */
 @HandlesTypes(WebApplicationInitializer.class)
 public class SpringServletContainerInitializer implements ServletContainerInitializer {
