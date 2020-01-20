@@ -31,7 +31,6 @@ import org.springframework.web.context.ServletContextAware;
 
 /**
  * An {@link HttpRequestHandler} for serving static files using the Servlet container's "default" Servlet.
- *将HTTP请求转发到容器默认的Servlet
  * <p>This handler is intended to be used with a "/*" mapping when the
  * {@link org.springframework.web.servlet.DispatcherServlet DispatcherServlet}
  * is mapped to "/", thus  overriding the Servlet container's default handling of static resources.
@@ -86,7 +85,6 @@ public class DefaultServletHttpRequestHandler implements HttpRequestHandler, Ser
 	 * If the {@code defaultServletName} property has not been explicitly set,
 	 * attempts to locate the default Servlet using the known common
 	 * container-specific names.
-	 * 	如果没有配置默认Servlet名字,尝试获取常见Servlet容器的默认名字
 	 */
 	@Override
 	public void setServletContext(ServletContext servletContext) {
