@@ -39,7 +39,9 @@ import org.springframework.web.context.request.async.DeferredResult.DeferredResu
 /**
  * The central class for managing asynchronous request processing, mainly intended
  * as an SPI and not typically used directly by application classes.
- *
+ * 异步请求处理核心类:
+ *   管理所有异步请求的拦截器
+ *   装配异步请求的回调逻辑
  * <p>An async scenario starts with request processing as usual in a thread (T1).
  * Concurrent request handling can be initiated by calling
  * {@link #startCallableProcessing(Callable, Object...) startCallableProcessing} or
@@ -288,11 +290,8 @@ public final class WebAsyncManager {
 		}
 
 		List<CallableProcessingInterceptor> interceptors = new ArrayList<>();
-		//WebAsyncTask的回调接口优先级最高
 		interceptors.add(webAsyncTask.getInterceptor());
-		//AsyncSupportConfigurer配置的CallableInterceptor
 		interceptors.addAll(this.callableInterceptors.values());
-		//内置的超时拦截器
 		interceptors.add(timeoutCallableInterceptor);
 
 		final Callable<?> callable = webAsyncTask.getCallable();
@@ -418,12 +417,9 @@ public final class WebAsyncManager {
 		}
 
 		List<DeferredResultProcessingInterceptor> interceptors = new ArrayList<>();
-		//DeferredResult回调接口优先级最高
 		interceptors.add(deferredResult.getInterceptor());
-		//AsyncSupportConfigurer配置的DeferredResultProcessingInterceptor
 		interceptors.addAll(this.deferredResultInterceptors.values());
 
-		//注册默认的超时拦截器TimeoutDeferredResultProcessingInterceptor
 		interceptors.add(timeoutDeferredResultInterceptor);
 
 		final DeferredResultInterceptorChain interceptorChain = new DeferredResultInterceptorChain(interceptors);

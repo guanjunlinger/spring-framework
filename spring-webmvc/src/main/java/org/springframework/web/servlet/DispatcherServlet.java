@@ -1036,7 +1036,6 @@ public class DispatcherServlet extends FrameworkServlet {
 		HttpServletRequest processedRequest = request;
 		HandlerExecutionChain mappedHandler = null;
 		boolean multipartRequestParsed = false;
-
 		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
 
 		try {
@@ -1050,7 +1049,6 @@ public class DispatcherServlet extends FrameworkServlet {
 				// Determine handler for the current request.
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
-					//若处理器不存在,则默认返回404状态码
 					noHandlerFound(processedRequest, response);
 					return;
 				}
@@ -1075,7 +1073,6 @@ public class DispatcherServlet extends FrameworkServlet {
 				// Actually invoke the handler.
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
-				//异步请求开始时,停止后续处理逻辑
 				if (asyncManager.isConcurrentHandlingStarted()) {
 					return;
 				}
@@ -1088,7 +1085,6 @@ public class DispatcherServlet extends FrameworkServlet {
 				// making them available for @ExceptionHandler methods and other scenarios.
 				dispatchException = new NestedServletException("Handler dispatch failed", err);
 			}
-			//异常处理或者View渲染
 			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
 		} catch (Exception ex) {
 			triggerAfterCompletion(processedRequest, response, mappedHandler, ex);
@@ -1099,7 +1095,6 @@ public class DispatcherServlet extends FrameworkServlet {
 			if (asyncManager.isConcurrentHandlingStarted()) {
 				// Instead of postHandle and afterCompletion
 				if (mappedHandler != null) {
-					//异步请求开始之后的回调方法(afterConcurrentHandlingStarted)
 					mappedHandler.applyAfterConcurrentHandlingStarted(processedRequest, response);
 				}
 			} else {
@@ -1163,7 +1158,6 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 
 		if (mappedHandler != null) {
-			//同步请求中触发afterCompletion拦截方法
 			mappedHandler.triggerAfterCompletion(request, response, null);
 		}
 	}
@@ -1275,6 +1269,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 	/**
 	 * No handler found -> set appropriate HTTP response status.
+	 * 默认返回404状态码,否则抛出NoHandlerFoundException异常
 	 *
 	 * @param request  current HTTP request
 	 * @param response current HTTP response
@@ -1359,7 +1354,6 @@ public class DispatcherServlet extends FrameworkServlet {
 			WebUtils.exposeErrorRequestAttributes(request, ex, getServletName());
 			return exMv;
 		}
-		//异常处理器没有捕获到异常继续抛出
 		throw ex;
 	}
 

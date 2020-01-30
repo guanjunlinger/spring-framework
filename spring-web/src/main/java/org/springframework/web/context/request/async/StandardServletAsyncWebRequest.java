@@ -37,8 +37,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * support enabled using the Servlet API or by adding an
  * <code>&ltasync-supported&gttrue&lt/async-supported&gt</code> element to servlet and filter
  * declarations in {@code web.xml}.
- * 扩展框架内部的回调机制
- * 实现AsyncListener监听异步事件
+ * 基于AsyncListener接口实现自定义回调框架
  * @author Rossen Stoyanchev
  * @since 3.2
  */
