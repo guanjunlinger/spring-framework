@@ -1100,7 +1100,6 @@ public class DispatcherServlet extends FrameworkServlet {
 			} else {
 				// Clean up any resources used by a multipart request.
 				if (multipartRequestParsed) {
-					//清理Multipart请求创建的临时文件
 					cleanupMultipart(processedRequest);
 				}
 			}

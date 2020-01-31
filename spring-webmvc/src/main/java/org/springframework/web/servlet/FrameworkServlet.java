@@ -1041,6 +1041,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		Throwable failureCause = null;
 
 		LocaleContext previousLocaleContext = LocaleContextHolder.getLocaleContext();
+		//LocaleContextResolver策略模式获取LocaleContext
 		LocaleContext localeContext = buildLocaleContext(request);
 
 		RequestAttributes previousAttributes = RequestContextHolder.getRequestAttributes();
@@ -1048,7 +1049,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
 		asyncManager.registerCallableInterceptor(FrameworkServlet.class.getName(), new RequestBindingInterceptor());
-
+        //初始化context holders
 		initContextHolders(request, localeContext, requestAttributes);
 
 		try {
@@ -1065,7 +1066,6 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 				requestAttributes.requestCompleted();
 			}
 			logResult(request, response, failureCause, asyncManager);
-			//处理结束,发布请求被完成事件
 			publishRequestHandledEvent(request, response, startTime, failureCause);
 		}
 	}

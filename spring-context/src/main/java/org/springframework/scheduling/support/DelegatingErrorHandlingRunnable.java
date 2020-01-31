@@ -24,7 +24,7 @@ import org.springframework.util.ErrorHandler;
 /**
  * Runnable wrapper that catches any exception or error thrown from its
  * delegate Runnable and allows an {@link ErrorHandler} to handle it.
- *
+ * 装饰器模式,增加异常处理机制
  * @author Juergen Hoeller
  * @author Mark Fisher
  * @since 3.0
