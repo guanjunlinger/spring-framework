@@ -889,7 +889,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			asyncManager.registerCallableInterceptors(this.callableInterceptors);
 			asyncManager.registerDeferredResultInterceptors(this.deferredResultInterceptors);
 
-			//异步请求完成,则构造ConcurrentResultHandlerMethod, HandlerMethod仅仅返回异步处理结果
+			//异步请求完成,则构造ConcurrentResultHandlerMethod,覆盖默认的HandlerMethod
 			if (asyncManager.hasConcurrentResult()) {
 				Object result = asyncManager.getConcurrentResult();
 				mavContainer = (ModelAndViewContainer) asyncManager.getConcurrentResultContext()[0];
