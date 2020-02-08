@@ -542,7 +542,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at Integer.MAX_VALUE with a mapped
 	 * default servlet handler. To configure "default" Servlet handling,
 	 * override {@link #configureDefaultServletHandling}.
-	 * 注册DefaultServletHttpRequestHandler对象,将所有请求转发到容器的默认Servlet,默认不启用,order=Integer.MAX_VALUE
+	 * 注册DefaultServletHttpRequestHandler对象,将所有请求转发到容器默认Servlet,默认不启用,order=Integer.MAX_VALUE
 	 */
 	@Bean
 	@Nullable
