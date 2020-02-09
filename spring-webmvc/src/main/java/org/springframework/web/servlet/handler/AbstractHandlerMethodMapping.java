@@ -209,6 +209,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	 */
 	protected void initHandlerMethods() {
 		for (String beanName : getCandidateBeanNames()) {
+			//过滤@Scope注解配置的代理Bean
 			if (!beanName.startsWith(SCOPED_TARGET_NAME_PREFIX)) {
 				processCandidateBean(beanName);
 			}
@@ -589,7 +590,6 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 				//建立RequestMappingInfo和HandlerMethod之间的映射关系
 				this.mappingLookup.put(mapping, handlerMethod);
 
-				//获取无通配符的URL
 				List<String> directUrls = getDirectUrls(mapping);
 				for (String url : directUrls) {
 					//建立URL和RequestMappingInfo之间的映射关系,直接匹配
@@ -602,7 +602,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 					//建立RequestMappingInfo的name属性和HandlerMethod之间的映射关系
 					addMappingName(name, handlerMethod);
 				}
-                    //提取@CrossOrigin注解配置的CORS信息
+				//提取@CrossOrigin注解配置的CORS信息
 				CorsConfiguration corsConfig = initCorsConfiguration(handler, method, mapping);
 				if (corsConfig != null) {
 					this.corsLookup.put(handlerMethod, corsConfig);

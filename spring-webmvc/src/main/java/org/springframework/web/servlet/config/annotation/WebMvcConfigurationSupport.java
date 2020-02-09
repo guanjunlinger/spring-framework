@@ -299,7 +299,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		if (pathMatcher != null) {
 			mapping.setPathMatcher(pathMatcher);
 		}
-		//以处理器为单位,为符合条件的URI添加前缀
+		//允许为处理器的URI添加前缀
 		Map<String, Predicate<Class<?>>> pathPrefixes = configurer.getPathPrefixes();
 		if (pathPrefixes != null) {
 			mapping.setPathPrefixes(pathPrefixes);
@@ -348,7 +348,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Callback for building the {@link PathMatchConfigurer}.
 	 * Delegates to {@link #configurePathMatch}.
-	 *
+	 * 配置HandlerMapping路径匹配选项
 	 * @since 4.1
 	 */
 	protected PathMatchConfigurer getPathMatchConfigurer() {
@@ -450,7 +450,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at 1 to map URL paths directly to
 	 * view names. To configure view controllers, override
 	 * {@link #addViewControllers}.
-	 * 注册ParameterizableViewController处理器,order=1,默认不启用
 	 */
 	@Bean
 	@Nullable
@@ -480,7 +479,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Return a {@link BeanNameUrlHandlerMapping} ordered at 2 to map URL
 	 * paths to controller bean names.
-	 * 建立URL和bean名之间的映射关系 order=2
 	 */
 	@Bean
 	public BeanNameUrlHandlerMapping beanNameHandlerMapping() {
@@ -495,7 +493,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped
 	 * resource handlers. To configure resource handling, override
 	 * {@link #addResourceHandlers}.
-	 * 注册ResourceHttpRequestHandler处理器,默认不启用,order=Integer.MAX_VALUE-1
 	 */
 	@Bean
 	@Nullable
@@ -549,7 +546,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Return a handler mapping ordered at Integer.MAX_VALUE with a mapped
 	 * default servlet handler. To configure "default" Servlet handling,
 	 * override {@link #configureDefaultServletHandling}.
-	 * 注册DefaultServletHttpRequestHandler对象,将所有请求转发到容器默认Servlet,默认不启用,order=Integer.MAX_VALUE
 	 */
 	@Bean
 	@Nullable
@@ -964,7 +960,6 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * </ul>
 	 */
 	protected final void addDefaultHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-		//初始化ExceptionHandlerExceptionResolver
 		ExceptionHandlerExceptionResolver exceptionHandlerResolver = createExceptionHandlerExceptionResolver();
 		exceptionHandlerResolver.setContentNegotiationManager(mvcContentNegotiationManager());
 		exceptionHandlerResolver.setMessageConverters(getMessageConverters());
@@ -980,12 +975,10 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		exceptionHandlerResolver.afterPropertiesSet();
 		exceptionResolvers.add(exceptionHandlerResolver);
 
-		//初始化ResponseStatusExceptionResolver
 		ResponseStatusExceptionResolver responseStatusResolver = new ResponseStatusExceptionResolver();
 		responseStatusResolver.setMessageSource(this.applicationContext);
 		exceptionResolvers.add(responseStatusResolver);
 
-		//初始化DefaultHandlerExceptionResolver
 		exceptionResolvers.add(new DefaultHandlerExceptionResolver());
 	}
 
@@ -1049,7 +1042,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Return the registered {@link CorsConfiguration} objects,
 	 * keyed by path pattern.
-	 *
+	 * 全局CORS配置
 	 * @since 4.2
 	 */
 	protected final Map<String, CorsConfiguration> getCorsConfigurations() {
