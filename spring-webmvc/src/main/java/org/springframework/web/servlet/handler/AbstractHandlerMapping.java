@@ -299,11 +299,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	 */
 	@Override
 	protected void initApplicationContext() throws BeansException {
-		//扩展拦截器,默认只支持WebRequestInterceptor和HandlerInterceptor两种接口
 		extendInterceptors(this.interceptors);
-		//添加Spring管理的MappedInterceptor实例
 		detectMappedInterceptors(this.adaptedInterceptors);
-		//将interceptors列表中拦截器适配到HandlerInterceptor类型,然后添加到adaptedInterceptors列表
 		initInterceptors();
 	}
 
@@ -437,9 +434,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 			logger.debug("Mapped to " + executionChain.getHandler());
 		}
 		if (CorsUtils.isCorsRequest(request)) {
-			//CorsConfigurationSource实现类包含CorsConfiguration集合信息
 			CorsConfiguration globalConfig = this.corsConfigurationSource.getCorsConfiguration(request);
-			//子类定义Handler的CORS配置信息的获取方式
 			CorsConfiguration handlerConfig = getCorsConfiguration(handler, request);
 			CorsConfiguration config = (globalConfig != null ? globalConfig.combine(handlerConfig) : handlerConfig);
 			executionChain = getCorsHandlerExecutionChain(request, executionChain, config);
@@ -449,8 +444,6 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * AbstractUrlHandlerMapping的子类返回HandlerExecutionChain对象
-	 * AbstractHandlerMethodMapping的子类返回HandlerMethod对象
 	 * Look up a handler for the given request, returning {@code null} if no
 	 * specific one is found. This method is called by {@link #getHandler};
 	 * a {@code null} return value will lead to the default handler, if one is set.
