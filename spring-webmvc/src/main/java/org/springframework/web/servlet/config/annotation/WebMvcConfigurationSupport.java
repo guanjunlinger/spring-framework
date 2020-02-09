@@ -267,14 +267,13 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		return this.servletContext;
 	}
 
-	//注册HandlerMethod,order=0
 	@Bean
 	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 		RequestMappingHandlerMapping mapping = createRequestMappingHandlerMapping();
 		mapping.setOrder(0);
 		mapping.setInterceptors(getInterceptors());
 		mapping.setContentNegotiationManager(mvcContentNegotiationManager());
-		//全局CORS配置
+
 		mapping.setCorsConfigurations(getCorsConfigurations());
 
 		PathMatchConfigurer configurer = getPathMatchConfigurer();
@@ -328,7 +327,9 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		if (this.interceptors == null) {
 			InterceptorRegistry registry = new InterceptorRegistry();
 			addInterceptors(registry);
+			//将ConversionService对象暴露在请求属性中
 			registry.addInterceptor(new ConversionServiceExposingInterceptor(mvcConversionService()));
+			//将ResourceUrlProvider对象暴露在请求属性中
 			registry.addInterceptor(new ResourceUrlProviderExposingInterceptor(mvcResourceUrlProvider()));
 			this.interceptors = registry.getInterceptors();
 		}
@@ -398,6 +399,11 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	/**
 	 * Return a {@link ContentNegotiationManager} instance to use to determine
 	 * requested {@linkplain MediaType media types} in a given request.
+	 * 默认按顺序配置三种ContentNegotiationStrategy
+	 *    PathExtensionContentNegotiationStrategy
+	 *    ParameterContentNegotiationStrategy
+	 *    HeaderContentNegotiationStrategy
+	 *
 	 */
 	@Bean
 	public ContentNegotiationManager mvcContentNegotiationManager() {
@@ -410,6 +416,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 		return this.contentNegotiationManager;
 	}
 
+	//框架默认的请求路径扩展名与MIME的映射关系
 	protected Map<String, MediaType> getDefaultMediaTypes() {
 		Map<String, MediaType> map = new HashMap<>(4);
 		if (romePresent) {
