@@ -226,9 +226,9 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 		}
 		else {
 			HttpServletRequest request = inputMessage.getServletRequest();
-			//解析客户端支持的MIME类型
+		    //应用ContentNegotiationStrategy策略模式解析客户端支持的MIME类型
 			List<MediaType> acceptableTypes = getAcceptableMediaTypes(request);
-			//解析服务器能够产生的MIME类型
+
 			List<MediaType> producibleTypes = getProducibleMediaTypes(request, valueType, targetType);
 
 			if (body != null && producibleTypes.isEmpty()) {
