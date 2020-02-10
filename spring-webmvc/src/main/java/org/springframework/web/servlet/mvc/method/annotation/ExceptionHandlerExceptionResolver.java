@@ -459,7 +459,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 			ExceptionHandlerMethodResolver resolver = this.exceptionHandlerCache.get(handlerType);
 			if (resolver == null) {
 				resolver = new ExceptionHandlerMethodResolver(handlerType);
-				//建立Handler和ExceptionHandlerMethodResolver
+				//缓存handler与ExceptionHandlerMethodResolver之间的映射关系
 				this.exceptionHandlerCache.put(handlerType, resolver);
 			}
 			Method method = resolver.resolveMethod(exception);

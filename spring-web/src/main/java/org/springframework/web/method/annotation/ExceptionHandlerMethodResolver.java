@@ -151,6 +151,7 @@ public class ExceptionHandlerMethodResolver {
 		Method method = this.exceptionLookupCache.get(exceptionType);
 		if (method == null) {
 			method = getMappedMethod(exceptionType);
+			//缓存ExceptionType和Method之间的映射关系
 			this.exceptionLookupCache.put(exceptionType, method);
 		}
 		return method;

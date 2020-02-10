@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * A {@link HandlerExceptionResolver} that delegates to a list of other
  * {@link HandlerExceptionResolver HandlerExceptionResolvers}.
- *  代理框架内置的HandlerExceptionResolver
+ *
  * @author Rossen Stoyanchev
  * @since 3.1
  */
@@ -73,7 +73,7 @@ public class HandlerExceptionResolverComposite implements HandlerExceptionResolv
 	@Override
 	@Nullable
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,
-			@Nullable Object handler,Exception ex) {
+										 @Nullable Object handler, Exception ex) {
 
 		if (this.resolvers != null) {
 			for (HandlerExceptionResolver handlerExceptionResolver : this.resolvers) {
