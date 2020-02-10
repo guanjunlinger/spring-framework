@@ -136,6 +136,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 
 		if (!info.getProducesCondition().getProducibleMediaTypes().isEmpty()) {
 			Set<MediaType> mediaTypes = info.getProducesCondition().getProducibleMediaTypes();
+			//暴露Handler产生的MIME到请求属性
 			request.setAttribute(PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE, mediaTypes);
 		}
 	}

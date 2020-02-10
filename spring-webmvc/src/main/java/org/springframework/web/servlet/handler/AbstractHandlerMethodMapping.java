@@ -376,12 +376,10 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 		List<Match> matches = new ArrayList<>();
 		List<T> directPathMatches = this.mappingRegistry.getMappingsByUrl(lookupPath);
 		if (directPathMatches != null) {
-			//直接匹配
 			addMatchingMappings(directPathMatches, matches, request);
 		}
 		if (matches.isEmpty()) {
 			// No choice but to go through all mappings...
-			//模式匹配
 			addMatchingMappings(this.mappingRegistry.getMappings().keySet(), matches, request);
 		}
 
@@ -406,11 +404,10 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 							"Ambiguous handler methods mapped for '" + uri + "': {" + m1 + ", " + m2 + "}");
 				}
 			}
-			//暴露模板变量,路径匹配信息,HandlerMethod产生的MIME类型
 			handleMatch(bestMatch.mapping, lookupPath, request);
 			return bestMatch.handlerMethod;
 		} else {
-			//处理仅URL匹配的异常情况
+
 			return handleNoMatch(this.mappingRegistry.getMappings().keySet(), lookupPath, request);
 		}
 	}
