@@ -1046,9 +1046,9 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 		RequestAttributes previousAttributes = RequestContextHolder.getRequestAttributes();
 		ServletRequestAttributes requestAttributes = buildRequestAttributes(request, response, previousAttributes);
-
+        //暴露WebAsyncManager对象到请求属性中
 		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
-		//RequestBindingInterceptor为业务线程池保留请求的上下文信息
+		//暴露LocaleContext和RequestAttributes到线程本地存储中
 		asyncManager.registerCallableInterceptor(FrameworkServlet.class.getName(), new RequestBindingInterceptor());
 		initContextHolders(request, localeContext, requestAttributes);
 
