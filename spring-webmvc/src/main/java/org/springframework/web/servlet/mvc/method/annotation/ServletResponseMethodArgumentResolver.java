@@ -63,6 +63,7 @@ public class ServletResponseMethodArgumentResolver implements HandlerMethodArgum
 			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 
 		if (mavContainer != null) {
+			//参数中出现HttpServletResponse,提前标志请求完成,主要场景是Method返回void
 			mavContainer.setRequestHandled(true);
 		}
 

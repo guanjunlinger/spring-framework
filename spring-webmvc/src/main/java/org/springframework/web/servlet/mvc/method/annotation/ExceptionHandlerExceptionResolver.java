@@ -258,7 +258,6 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 		initExceptionHandlerAdviceCache();
 
 		if (this.argumentResolvers == null) {
-			//配置框架内置和自定义的HandlerMethodArgumentResolver
 			List<HandlerMethodArgumentResolver> resolvers = getDefaultArgumentResolvers();
 			this.argumentResolvers = new HandlerMethodArgumentResolverComposite().addResolvers(resolvers);
 		}
@@ -283,10 +282,9 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 			}
 			ExceptionHandlerMethodResolver resolver = new ExceptionHandlerMethodResolver(beanType);
 			if (resolver.hasExceptionMappings()) {
-				//@ControllerAdvice注解类对应的ExceptionHandlerMethodResolver
 				this.exceptionHandlerAdviceCache.put(adviceBean, resolver);
 			}
-			//@ControllerAdvice注解类实现ResponseBodyAdvice接口
+
 			if (ResponseBodyAdvice.class.isAssignableFrom(beanType)) {
 				this.responseBodyAdvice.add(adviceBean);
 			}
@@ -455,19 +453,17 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 		Class<?> handlerType = null;
 
 		if (handlerMethod != null) {
-			// 首先搜索HandlerMethod所在类的@ExceptionHandler的方法
 
 			// To be invoked through the proxy, even in case of an interface-based proxy.
 			handlerType = handlerMethod.getBeanType();
 			ExceptionHandlerMethodResolver resolver = this.exceptionHandlerCache.get(handlerType);
 			if (resolver == null) {
-				//缓存处理器对@ExceptionHandler方法的解析结果
 				resolver = new ExceptionHandlerMethodResolver(handlerType);
+				//建立Handler和ExceptionHandlerMethodResolver
 				this.exceptionHandlerCache.put(handlerType, resolver);
 			}
 			Method method = resolver.resolveMethod(exception);
 			if (method != null) {
-				//如果存在@ExceptionHandler异常处理方法
 				return new ServletInvocableHandlerMethod(handlerMethod.getBean(), method);
 			}
 			// For advice applicability check below (involving base packages, assignable types
@@ -476,10 +472,8 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 				handlerType = AopUtils.getTargetClass(handlerMethod.getBean());
 			}
 		}
-		//搜索所有@ControllerAdvice注入的ExceptionHandlerMethodResolver
 		for (Map.Entry<ControllerAdviceBean, ExceptionHandlerMethodResolver> entry : this.exceptionHandlerAdviceCache.entrySet()) {
 			ControllerAdviceBean advice = entry.getKey();
-			//默认应用到所有Handler类型,包括null
 			if (advice.isApplicableToBeanType(handlerType)) {
 				ExceptionHandlerMethodResolver resolver = entry.getValue();
 				Method method = resolver.resolveMethod(exception);
