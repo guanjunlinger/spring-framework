@@ -79,6 +79,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 		}
 
 		boolean preFlightRequest = CorsUtils.isPreFlightRequest(request);
+		//特殊处理CORS配置为空的情况
 		if (config == null) {
 			if (preFlightRequest) {
 				rejectRequest(serverResponse);
