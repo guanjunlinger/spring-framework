@@ -267,6 +267,7 @@ class ConfigurationClassParser {
 		}
 
 		// Process any @PropertySource annotations
+		//PropertySource的扩展点
 		for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), PropertySources.class,
 				org.springframework.context.annotation.PropertySource.class)) {
