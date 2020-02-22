@@ -118,6 +118,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * {@link #customizePropertySources(MutablePropertySources)} during construction to
 	 * allow subclasses to contribute or manipulate {@link PropertySource} instances as
 	 * appropriate.
+	 * 模板方法模式,允许子类自定义
 	 * @see #customizePropertySources(MutablePropertySources)
 	 */
 	public AbstractEnvironment() {
