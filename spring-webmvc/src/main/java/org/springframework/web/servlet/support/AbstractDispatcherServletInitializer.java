@@ -59,8 +59,9 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		//利用ContextLoaderListener初始化Spring容器
+		//注册ContextLoaderListener引导Root ApplicationContext的初始化
 		super.onStartup(servletContext);
+		//注册DispatcherServlet引导Servlet ApplicationContext的初始化
 		registerDispatcherServlet(servletContext);
 	}
 
@@ -82,9 +83,9 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 		WebApplicationContext servletAppContext = createServletApplicationContext();
 		Assert.notNull(servletAppContext, "createServletApplicationContext() must not return null");
 
-		//利用Servlet的init方法初始化SpringMVC容器
 		FrameworkServlet dispatcherServlet = createDispatcherServlet(servletAppContext);
 		Assert.notNull(dispatcherServlet, "createDispatcherServlet(WebApplicationContext) must not return null");
+		//servlet application context自定义配置扩展点
 		dispatcherServlet.setContextInitializers(getServletApplicationContextInitializers());
 
 		ServletRegistration.Dynamic registration = servletContext.addServlet(servletName, dispatcherServlet);
@@ -103,7 +104,7 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 				registerServletFilter(servletContext, filter);
 			}
 		}
-        //MultipartConfigElement扩展点
+		//Servlet自定义配置的扩展点
 		customizeRegistration(registration);
 	}
 
@@ -200,7 +201,6 @@ public abstract class AbstractDispatcherServletInitializer extends AbstractConte
 		}
 
 		registration.setAsyncSupported(isAsyncSupported());
-		//配置Filter的作用规则
 		registration.addMappingForServletNames(getDispatcherTypes(), false, getServletName());
 		return registration;
 	}
