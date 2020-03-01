@@ -106,6 +106,7 @@ public abstract class AopUtils {
 	public static Class<?> getTargetClass(Object candidate) {
 		Assert.notNull(candidate, "Candidate object must not be null");
 		Class<?> result = null;
+		//Spring的动态代理都会实现Advised接口,暴露被代理类和增强信息
 		if (candidate instanceof TargetClassAware) {
 			result = ((TargetClassAware) candidate).getTargetClass();
 		}
