@@ -250,7 +250,11 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			// Simply call processConfigurationClasses lazily at this point then.
 			processConfigBeanDefinitions((BeanDefinitionRegistry) beanFactory);
 		}
-		//ConfigurationClassEnhancer工具类增强所有@Configuration配置类
+		/** ConfigurationClassEnhancer工具类重写@Configuration配置类
+		    修改BeanDefinition的class属性为增强类class
+		    设置PRESERVE_TARGET_CLASS_ATTRIBUTE为true,明确设置基于类的动态代理
+		 */
+
 		enhanceConfigurationClasses(beanFactory);
 		//添加负责ImportAware回调的BeanPostProcessor
 		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));

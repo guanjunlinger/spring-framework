@@ -455,7 +455,6 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 				proxyFactory.setProxyTargetClass(true);
 			}
 			else {
-				 //如果当前类没有没有实现接口,则启用基于类的代理
 				evaluateProxyInterfaces(beanClass, proxyFactory);
 			}
 		}
