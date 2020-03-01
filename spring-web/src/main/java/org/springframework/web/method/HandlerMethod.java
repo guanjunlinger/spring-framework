@@ -135,6 +135,7 @@ public class HandlerMethod {
 		if (beanType == null) {
 			throw new IllegalStateException("Cannot resolve bean type for bean with name '" + beanName + "'");
 		}
+		//提取被CGLIB动态代理的真实类
 		this.beanType = ClassUtils.getUserClass(beanType);
 		this.method = method;
 		this.bridgedMethod = BridgeMethodResolver.findBridgedMethod(method);
@@ -187,7 +188,6 @@ public class HandlerMethod {
 		return result;
 	}
 
-	//处理器方法可能有@ResponseStatus注解信息
 	private void evaluateResponseStatus() {
 		ResponseStatus annotation = getMethodAnnotation(ResponseStatus.class);
 		if (annotation == null) {
