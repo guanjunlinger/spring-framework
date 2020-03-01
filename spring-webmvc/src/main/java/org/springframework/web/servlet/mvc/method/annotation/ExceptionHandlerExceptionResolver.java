@@ -276,6 +276,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 		AnnotationAwareOrderComparator.sort(adviceBeans);
 
 		for (ControllerAdviceBean adviceBean : adviceBeans) {
+			//提取被CGLIB动态代理的目标类
 			Class<?> beanType = adviceBean.getBeanType();
 			if (beanType == null) {
 				throw new IllegalStateException("Unresolvable type for ControllerAdviceBean: " + adviceBean);
