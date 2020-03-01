@@ -607,7 +607,7 @@ class ConstructorResolver {
 		bw.setBeanInstance(instantiate(beanName, mbd, factoryBean, factoryMethodToUse, argsToUse));
 		return bw;
 	}
-
+    //默认使用CglibSubclassingInstantiationStrategy实例化FactoryMethod
 	private Object instantiate(
 			String beanName, RootBeanDefinition mbd, Object factoryBean, Method factoryMethod, Object[] args) {
 

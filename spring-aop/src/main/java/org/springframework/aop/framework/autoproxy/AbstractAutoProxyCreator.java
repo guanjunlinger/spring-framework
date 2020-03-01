@@ -444,7 +444,6 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 			@Nullable Object[] specificInterceptors, TargetSource targetSource) {
 
 		if (this.beanFactory instanceof ConfigurableListableBeanFactory) {
-			//暴露beanClass到BeanDefinition的ORIGINAL_TARGET_CLASS_ATTRIBUTE属性中
 			AutoProxyUtils.exposeTargetClass((ConfigurableListableBeanFactory) this.beanFactory, beanName, beanClass);
 		}
 
