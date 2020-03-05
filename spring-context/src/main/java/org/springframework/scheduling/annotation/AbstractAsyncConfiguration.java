@@ -64,7 +64,7 @@ public abstract class AbstractAsyncConfiguration implements ImportAware {
 
 	/**
 	 * Collect any {@link AsyncConfigurer} beans through autowiring.
-	 * 应用AsyncConfigurer配置Executor和AsyncUncaughtExceptionHandler
+	 * 利用AsyncConfigurer Bean实例为异步任务配置全局Executor和AsyncUncaughtExceptionHandler
 	 *
 	 */
 	@Autowired(required = false)
