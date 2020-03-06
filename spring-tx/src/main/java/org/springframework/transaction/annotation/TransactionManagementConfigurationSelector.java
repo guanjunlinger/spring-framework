@@ -26,7 +26,7 @@ import org.springframework.util.ClassUtils;
  * Selects which implementation of {@link AbstractTransactionManagementConfiguration}
  * should be used based on the value of {@link EnableTransactionManagement#mode} on the
  * importing {@code @Configuration} class.
- *
+ *  配置事务相关的AOP基础设置
  * @author Chris Beams
  * @author Juergen Hoeller
  * @since 3.1
