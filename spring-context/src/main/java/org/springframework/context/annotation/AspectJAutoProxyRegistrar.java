@@ -25,7 +25,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * Registers an {@link org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator
  * AnnotationAwareAspectJAutoProxyCreator} against the current {@link BeanDefinitionRegistry}
  * as appropriate based on a given @{@link EnableAspectJAutoProxy} annotation.
- *
+ * 配置Aspectj AOP的基础设置
  * @author Chris Beams
  * @author Juergen Hoeller
  * @since 3.1
@@ -42,9 +42,6 @@ class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 	public void registerBeanDefinitions(
 			AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 
-		/**如果不存在beanName=org.springframework.aop.config.internalAutoProxyCreator
-		 * 则默认注册AnnotationAwareAspectJAutoProxyCreator
-		 */
 		AopConfigUtils.registerAspectJAnnotationAutoProxyCreatorIfNecessary(registry);
 
 		AnnotationAttributes enableAspectJAutoProxy =
