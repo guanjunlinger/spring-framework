@@ -588,17 +588,19 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Initialize the bean instance.
 		Object exposedObject = bean;
 		try {
-			/**回调InstantiationAwareBeanPostProcessor.postProcessAfterInstantiation方法
-			 * 允许扩展字段注入方式
-			 *
-			 */
 
+			/**
+			 * 1.回调InstantiationAwareBeanPostProcessor.postProcessAfterInstantiation方法
+			 * 2.回调InstantiationAwareBeanPostProcessor.postProcessProperties方法
+			 * 3.BeanWrapper实例完成属性配置
+			 */
 			populateBean(beanName, mbd, instanceWrapper);
 			/**
 			 * 1.调用与BeanFactory相关的Aware方法
 			 * 2.回调BeanPostProcessor.postProcessBeforeInitialization方法
 			 * 3.回调InitializingBean.afterPropertiesSet方法
-			 * 4.回调BeanPostProcessor.postProcessAfterInitialization方法
+			 * 4.回调BeanDefinition配置的initMethod
+			 * 5.回调BeanPostProcessor.postProcessAfterInitialization方法
 			 */
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		} catch (Throwable ex) {
@@ -1377,6 +1379,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		PropertyValues pvs = (mbd.hasPropertyValues() ? mbd.getPropertyValues() : null);
+
 
 		if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_NAME || mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
 			MutablePropertyValues newPvs = new MutablePropertyValues(pvs);
