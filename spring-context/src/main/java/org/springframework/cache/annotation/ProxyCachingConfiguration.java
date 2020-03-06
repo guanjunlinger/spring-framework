@@ -28,12 +28,12 @@ import org.springframework.context.annotation.Role;
 /**
  * {@code @Configuration} class that registers the Spring infrastructure beans necessary
  * to enable proxy-based annotation-driven cache management.
- *
+ * 配置注解相关的AOP基础设置
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.1
  * @see EnableCaching
  * @see CachingConfigurationSelector
+ * @since 3.1
  */
 @Configuration
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
@@ -54,7 +54,6 @@ public class ProxyCachingConfiguration extends AbstractCachingConfiguration {
 	@Bean
 	@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 	public CacheOperationSource cacheOperationSource() {
-		//配置CacheAnnotationParser来获取Cache注解配置
 		return new AnnotationCacheOperationSource();
 	}
 
@@ -62,13 +61,6 @@ public class ProxyCachingConfiguration extends AbstractCachingConfiguration {
 	@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 	public CacheInterceptor cacheInterceptor() {
 		CacheInterceptor interceptor = new CacheInterceptor();
-		/** CacheInterceptor组件的配置顺序
-		 *  CachingConfigurer实例类配置
-		 *  部分组件默认配置
-		 *  CacheAspectSupport的afterSingletonsInstantiated回调配置SimpleCacheResolver
-		 *
-		 *
-		 */
 		interceptor.configure(this.errorHandler, this.keyGenerator, this.cacheResolver, this.cacheManager);
 		interceptor.setCacheOperationSource(cacheOperationSource());
 		return interceptor;
