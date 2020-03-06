@@ -36,6 +36,7 @@ import org.springframework.util.Assert;
  * @since 3.1
  * @see EnableAsync
  * @see AsyncConfigurationSelector
+ * 配置异步任务AOP基础设置
  */
 @Configuration
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
