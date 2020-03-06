@@ -58,6 +58,7 @@ public abstract class AopConfigUtils {
 
 	static {
 		// Set up the escalation list...
+		//默认的自动代理生成器的优先级
 		APC_PRIORITY_LIST.add(InfrastructureAdvisorAutoProxyCreator.class);
 		APC_PRIORITY_LIST.add(AspectJAwareAdvisorAutoProxyCreator.class);
 		APC_PRIORITY_LIST.add(AnnotationAwareAspectJAutoProxyCreator.class);
