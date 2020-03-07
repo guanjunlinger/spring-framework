@@ -439,9 +439,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		return result;
 	}
 
-	/**
-	 * 回调BeanPostProcessor.postProcessAfterInitialization方法
-	 */
+
 
 	@Override
 	public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName)
@@ -576,7 +574,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// even when triggered by lifecycle interfaces like BeanFactoryAware.
 		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
 				isSingletonCurrentlyInCreation(beanName));
-		//如果允许循环依赖,则提前暴露实例化的单例Bean
 		if (earlySingletonExposure) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("Eagerly caching bean '" + beanName +
@@ -640,7 +637,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// Register bean as disposable.
 		try {
-			//将Bean清理资源方法适配到DisposableBean接口
+			/**
+			 * 注册DisposableBeanAdapter负责destruction work:
+			 *   1.实现DisposableBean 或者AutoCloseable接口
+			 *   2.@Bean destroyMethod属性为默认值,配置的Class包含close 或者shutdown Method
+			 *   3.DestructionAwareBeanPostProcessor的requiresDestruction校验返回true
+			 */
 			registerDisposableBeanIfNecessary(beanName, bean, mbd);
 		} catch (BeanDefinitionValidationException ex) {
 			throw new BeanCreationException(
@@ -1174,7 +1176,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		// Candidate constructors for autowiring?
-		//回调SmartInstantiationAwareBeanPostProcessor.determineCandidateConstructors方法提取构造器注入的必要信息
 		Constructor<?>[] ctors = determineConstructorsFromBeanPostProcessors(beanClass, beanName);
 		if (ctors != null || mbd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR ||
 				mbd.hasConstructorArgumentValues() || !ObjectUtils.isEmpty(args)) {
