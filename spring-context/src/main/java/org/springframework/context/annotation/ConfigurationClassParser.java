@@ -181,7 +181,7 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-		//所有@Configuration候选Bean被处理完后,执行DeferredImportSelector逻辑
+		//所有@Configuration候选Bean被处理完后,应用DeferredImportSelector的Group抽象,允许进一步扩展Bean Definition过程
 		this.deferredImportSelectorHandler.process();
 	}
 
@@ -789,7 +789,6 @@ class ConfigurationClassParser {
 
 
 	private class DeferredImportSelectorGroupingHandler {
-
 		private final Map<Object, DeferredImportSelectorGrouping> groupings = new LinkedHashMap<>();
 
 		private final Map<AnnotationMetadata, ConfigurationClass> configurationClasses = new HashMap<>();
@@ -860,11 +859,13 @@ class ConfigurationClassParser {
 		}
 	}
 
-
+	/**
+	 * 引入DeferredImportSelector分组抽象,允许定制Bean的import过程
+	 */
 	private static class DeferredImportSelectorGrouping {
-
+        //组内的import逻辑实现
 		private final DeferredImportSelector.Group group;
-
+        //组包含的DeferredImportSelector列表
 		private final List<DeferredImportSelectorHolder> deferredImports = new ArrayList<>();
 
 		DeferredImportSelectorGrouping(Group group) {
