@@ -181,7 +181,7 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-		//扩展ImportSelector接口,支持分组处理
+		//所有@Configuration候选Bean被处理完后,执行DeferredImportSelector逻辑
 		this.deferredImportSelectorHandler.process();
 	}
 
@@ -237,7 +237,6 @@ class ConfigurationClassParser {
 		}
 
 		// Recursively process the configuration class and its superclass hierarchy.
-		//沿着父类层次递归寻找候选Bean
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
@@ -267,7 +266,6 @@ class ConfigurationClassParser {
 		}
 
 		// Process any @PropertySource annotations
-		//PropertySource的扩展点
 		for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), PropertySources.class,
 				org.springframework.context.annotation.PropertySource.class)) {
@@ -508,7 +506,6 @@ class ConfigurationClassParser {
 
 	/**
 	 * Returns {@code @Import} class, considering all meta-annotations.
-	 * 获取@Import注解信息,考虑组合注解
 	 */
 	private Set<SourceClass> getImports(SourceClass sourceClass) throws IOException {
 		Set<SourceClass> imports = new LinkedHashSet<>();
