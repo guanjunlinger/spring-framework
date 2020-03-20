@@ -860,12 +860,10 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * 引入DeferredImportSelector分组抽象,允许定制Bean的import过程
+	 * 引入DeferredImportSelector分组抽象,允许细粒度定制Bean注册过程
 	 */
 	private static class DeferredImportSelectorGrouping {
-        //组内的import逻辑实现
 		private final DeferredImportSelector.Group group;
-        //组包含的DeferredImportSelector列表
 		private final List<DeferredImportSelectorHolder> deferredImports = new ArrayList<>();
 
 		DeferredImportSelectorGrouping(Group group) {
@@ -882,6 +880,7 @@ class ConfigurationClassParser {
 		 */
 		public Iterable<Group.Entry> getImports() {
 			for (DeferredImportSelectorHolder deferredImport : this.deferredImports) {
+				//Group.process Method对同组的DeferredImportSelector预处理
 				this.group.process(deferredImport.getConfigurationClass().getMetadata(),
 						deferredImport.getImportSelector());
 			}
