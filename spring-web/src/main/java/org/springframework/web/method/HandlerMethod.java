@@ -401,6 +401,7 @@ public class HandlerMethod {
 
 	/**
 	 * A MethodParameter with HandlerMethod-specific behavior.
+	 * 封装处理器Method参数信息,成员内部类,持有外部类HandlerMethod信息
 	 */
 	protected class HandlerMethodParameter extends SynthesizingMethodParameter {
 
@@ -469,6 +470,7 @@ public class HandlerMethod {
 
 	/**
 	 * A MethodParameter for a HandlerMethod return type based on an actual return value.
+	 * 封装处理器Method返回值信息,成员内部类,持有外部类HandlerMethod信息
 	 */
 	private class ReturnValueMethodParameter extends HandlerMethodParameter {
 
