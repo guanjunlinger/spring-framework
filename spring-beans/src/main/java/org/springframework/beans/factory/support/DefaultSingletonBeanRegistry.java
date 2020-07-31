@@ -192,7 +192,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					if (singletonFactory != null) {
 						singletonObject = singletonFactory.getObject();
 						/**
-						 * 循环依赖时,由对方暴露早期单例对象到第三级缓存
+						 * 循环依赖时,由对方驱动ObjectFactory回调,创建早期单例对象到二级缓存
 						 */
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						this.singletonFactories.remove(beanName);
