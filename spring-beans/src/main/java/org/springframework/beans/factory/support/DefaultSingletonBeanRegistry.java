@@ -72,19 +72,19 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * Cache of singleton objects: bean name to bean instance.
-	 *  缓存成熟的单例对象
+	 *  一级缓存(缓存成熟的单例对象)
 	 * */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
 	/**
 	 *  Cache of singleton factories: bean name to ObjectFactory.
-	 *  缓存单例工厂
+	 *  三级缓存(缓存单例工厂,解决循环依赖)
 	 *
 	 */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
 	/** Cache of early singleton objects: bean name to bean instance.
-	 *  缓存未初始化的单例对象
+	 *  二级缓存(缓存提前暴露的单例对象)
 	 */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
@@ -191,9 +191,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
 						singletonObject = singletonFactory.getObject();
-						/**
-						 * 循环依赖时,由对方驱动ObjectFactory回调,创建早期单例对象到二级缓存
-						 */
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						this.singletonFactories.remove(beanName);
 					}
@@ -257,9 +254,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					afterSingletonCreation(beanName);
 				}
 				if (newSingleton) {
-					/**
-					 * 将新创建的单例放到一级缓存
-					 */
 					addSingleton(beanName, singletonObject);
 				}
 			}
