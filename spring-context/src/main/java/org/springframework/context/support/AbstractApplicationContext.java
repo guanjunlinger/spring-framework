@@ -346,7 +346,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Return the {@code Environment} for this application context in configurable
 	 * form, allowing for further customization.
 	 * <p>If none specified, a default environment will be initialized via
-	 * 获取ConfigurableEnvironment管理配置信息
 	 * {@link #createEnvironment()}.
 	 */
 	@Override
@@ -570,6 +569,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			 *   ApplicationContextAwareProcessor
 			 *   ApplicationListenerDetector
 			 * 配置StandardBeanExpressionResolver处理SpEL表达式
+			 *
+			 * 初始化beanClassLoader,默认回调ClassUtils.getDefaultClassLoader()
 			 */
 
 			prepareBeanFactory(beanFactory);
