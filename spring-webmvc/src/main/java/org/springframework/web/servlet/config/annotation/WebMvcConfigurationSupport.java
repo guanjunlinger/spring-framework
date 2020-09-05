@@ -706,7 +706,7 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 	 * Provide access to the shared custom argument resolvers used by the
 	 * {@link RequestMappingHandlerAdapter} and the {@link ExceptionHandlerExceptionResolver}.
 	 * <p>This method cannot be overridden; use {@link #addArgumentResolvers} instead.
-	 *
+	 * 模板方法模式,提供自定义HandlerMethodArgumentResolver扩展点
 	 * @since 4.3
 	 */
 	protected final List<HandlerMethodArgumentResolver> getArgumentResolvers() {

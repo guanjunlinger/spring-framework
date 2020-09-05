@@ -70,7 +70,8 @@ public class ExceptionHandlerMethodResolver {
 	/**
 	 * Extract exception mappings from the {@code @ExceptionHandler} annotation first,
 	 * and then as a fallback from the method signature itself.
-	 * 首先从@ExceptionHandler注解抽取Exception信息,如果没找到,则从Method参数中抽取
+	 * 优先从@ExceptionHandler注解中抽取Exception信息
+	 * 否则从Method参数中抽取Throwable类型参数
 	 */
 	@SuppressWarnings("unchecked")
 	private List<Class<? extends Throwable>> detectExceptionMappings(Method method) {
@@ -151,7 +152,6 @@ public class ExceptionHandlerMethodResolver {
 		Method method = this.exceptionLookupCache.get(exceptionType);
 		if (method == null) {
 			method = getMappedMethod(exceptionType);
-			//缓存ExceptionType和Method之间的映射关系
 			this.exceptionLookupCache.put(exceptionType, method);
 		}
 		return method;

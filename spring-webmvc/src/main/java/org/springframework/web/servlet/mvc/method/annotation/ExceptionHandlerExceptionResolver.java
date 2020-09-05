@@ -100,6 +100,9 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 	private final Map<Class<?>, ExceptionHandlerMethodResolver> exceptionHandlerCache =
 			new ConcurrentHashMap<>(64);
 
+	/**
+	 *  缓存@ControllerAdvice注解类与ExceptionHandlerMethodResolver的映射
+	 */
 	private final Map<ControllerAdviceBean, ExceptionHandlerMethodResolver> exceptionHandlerAdviceCache =
 			new LinkedHashMap<>();
 

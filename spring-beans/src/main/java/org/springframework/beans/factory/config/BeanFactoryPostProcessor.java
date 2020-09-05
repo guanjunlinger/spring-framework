@@ -30,7 +30,6 @@ import org.springframework.beans.BeansException;
  *
  * <p>See PropertyResourceConfigurer and its concrete implementations
  * for out-of-the-box solutions that address such configuration needs.
- *   BeanFactoryPostProcessor不应该与Bean的实例化过程交互
  * <p>A BeanFactoryPostProcessor may interact with and modify bean
  * definitions, but never bean instances. Doing so may cause premature bean
  * instantiation, violating the container and causing unintended side-effects.
