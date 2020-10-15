@@ -212,7 +212,6 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 	protected void doProcessProperties(ConfigurableListableBeanFactory beanFactoryToProcess,
 			StringValueResolver valueResolver) {
-        //处理BeanDefinition中的占位符
 		BeanDefinitionVisitor visitor = new BeanDefinitionVisitor(valueResolver);
 
 		String[] beanNames = beanFactoryToProcess.getBeanDefinitionNames();
