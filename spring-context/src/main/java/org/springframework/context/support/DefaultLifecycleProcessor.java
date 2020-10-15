@@ -151,6 +151,9 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 				group.add(beanName, bean);
 			}
 		});
+		/**
+		 *  利用Phased接口定义启动和关闭的优先级
+		 */
 		if (!phases.isEmpty()) {
 			List<Integer> keys = new ArrayList<>(phases.keySet());
 			Collections.sort(keys);
@@ -287,6 +290,9 @@ public class DefaultLifecycleProcessor implements LifecycleProcessor, BeanFactor
 					(!isFactoryBean || matchesBeanType(Lifecycle.class, beanNameToCheck, beanFactory))) ||
 					matchesBeanType(SmartLifecycle.class, beanNameToCheck, beanFactory)) {
 				Object bean = beanFactory.getBean(beanNameToCheck);
+				/**
+				 *   将自己排除在组件之外
+				 */
 				if (bean != this && bean instanceof Lifecycle) {
 					beans.put(beanNameToRegister, (Lifecycle) bean);
 				}
